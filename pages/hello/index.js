@@ -7,7 +7,8 @@ Page({
     motto: '这里试试',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    numberHello:Math.max(1,2,3)
   },
   //事件处理函数
   bindViewTap: function() {
