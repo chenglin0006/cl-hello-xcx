@@ -2,7 +2,8 @@
   "pages":[
     "pages/index/index",
     "pages/logs/logs",
-    "pages/hello/index"
+    "pages/hello/index",
+    "pages/outLink/outLink"
   ],
   "window":{
     "backgroundTextStyle":"light",

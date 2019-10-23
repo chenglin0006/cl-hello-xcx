@@ -1,0 +1,31 @@
+<!--pages/chat/components/message/message.wxml-->
+<view class="{{isself?'self_main':'main'}}">
+<view class='time_view'><text class='time_text'>{{time}}</text></view>
+
+<view class='message-box'>
+<image class='touxiang' src="{{icon}}" wx:if="{{!isself}}"></image>
+<view wx:if="{{isself}}"  style='flex:1'></view>
+<view>
+<view wx:if="{{!isself}}" class='name'>{{name}}</view>
+<view class='message_container'>
+<view wx:if="{{type==-1}}" class="{{isself?'self_message':'message'}}">
+  {{content}}
+</view>
+<view wx:if="{{type==-2}}" class="{{isself?'self_image_view':'image_view'}}">
+  <image mode="aspectFit" class="image" src='{{thumbnailURL}}' bindtap='clickImage'></image>
+</view>
+<view wx:if="{{type==1}}" class="goodsMessage"  bindtap='clickGoods'>
+<image mode="aspectFit" class='goodsImage' src='{{goodsImageUrl}}'></image>
+<view class='goodsTxtView'>
+<text class='firstGoodsTxtView'>{{goodsTitle}}</text>
+<text class='secondGoodsTxtView'>{{goodsSubTitle}}</text>
+</view>
+</view>
+<text wx:if="{{isself}}" class='isreaded' style='color:{{timestamp>lastReadAt?"#FA7B00":"#999999"}}'>{{timestamp>lastReadAt?'未读':'已读'}}</text>
+</view>
+
+</view>
+<view wx:if="{{!isself}}" style='flex:1'></view>
+<image class='touxiang' src="{{icon}}" wx:if="{{isself}}"></image>
+</view>
+</view>

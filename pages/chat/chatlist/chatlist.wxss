@@ -1,0 +1,77 @@
+/* pages/chat/chatlist/chatlist.wxss */
+.cell_container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.icon{
+  width: 110rpx;
+  height: 110rpx;
+  background-color: lightgray;
+  margin:30rpx;
+}
+.text_view{
+  display: flex;
+  flex-direction: column;
+  flex:1;
+  border-bottom: 1rpx solid #f6f6f6;
+  padding-top: 30rpx;
+  padding-bottom: 30rpx;
+}
+.first_view{
+  display: flex;
+  flex-direction: row;
+  align-self: stretch;
+}
+.title{
+  flex: 1;
+  -webkit-line-clamp: 1;
+  display: -webkit-box; 
+  text-overflow: ellipsis; 
+  overflow: hidden;           
+  -webkit-box-orient: vertical; 
+  font-size: 16px;
+  color: #333333; 
+}
+.time{
+-webkit-line-clamp: 1;
+  display: -webkit-box; 
+  text-overflow: ellipsis; 
+  overflow: hidden;           
+  -webkit-box-orient: vertical;  
+  font-size: 12px;
+  color: #999999;
+  margin-right: 20rpx;
+}
+.second_view{
+  display: flex;
+  flex-direction: row;
+  margin-top: 10rpx;
+  align-self: stretch;
+}
+.message{
+  flex: 1;
+  display: -webkit-box; 
+  text-overflow: ellipsis; 
+  overflow: hidden;           
+  -webkit-box-orient: vertical;   
+  -webkit-line-clamp: 1; 
+  font-size: 14px;
+  color: #999999;
+}
+.count_view{
+  background-color: #F43C13;
+  border-radius: 20px;
+  margin-right: 20rpx;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40rpx;
+  min-width: 20rpx;
+}
+.count{
+  font-size: 12px;
+  color: white;
+}

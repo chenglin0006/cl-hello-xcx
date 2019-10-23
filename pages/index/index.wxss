@@ -19,3 +19,497 @@
 .usermotto {
   margin-top: 200px;
 }
+
+/**index.wxss**/
+page{
+  height: 100%;
+}
+.index-container {
+    position: relative;
+    background-color: #F5F5F5;
+    height: 100%;
+}
+.scrollView{
+  width: 100%;
+  height: 100%
+}
+.topView{
+    width: 100%;
+    height: 86rpx;
+    display: flex;
+    padding-top: 10rpx;
+    background-color: #FF8700;
+    justify-content: center
+}
+.topSearch{
+    width: 710rpx;
+    height: 56rpx;
+    background-color: #FFFFFF;
+    border-radius: 30rpx;
+    
+}
+.topSearchIcon{
+    width: 34rpx;
+    height: 34rpx;
+    position: absolute;
+    left: 40rpx;
+    top:22rpx;
+    z-index: 1;
+}
+.topSearchCont{
+    width: 560rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    padding: 0 70rpx;
+    font-size: 28rpx;
+    display: flex;
+    box-sizing: border-box;
+}
+.topSearchFail{
+    width: 60rpx;
+    height: 60rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    top:0;
+    z-index: 9;
+}
+.index-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 56rpx;
+    padding: 35rpx 20rpx 0 20rpx
+}
+.top-right{
+  display: flex;
+  flex-direction: row;
+}
+.index-address {
+    height: 90rpx;
+    line-height: 90rpx;
+    display: flex;
+    align-items: center
+}
+
+.address-icon {
+    width: 14rpx;
+    height: 10rpx;
+    margin-left: 12rpx;
+}
+.right-icon {
+  width: 56rpx;
+  height: 56rpx;
+}
+
+.call-icon {
+  width: 56rpx;
+  height: 56rpx;
+  margin-right: 44rpx;
+}
+
+.address-shopcode {
+    color: #333333;
+    font-size: 28rpx;
+}
+
+.index-banner {
+    position: relative;
+    padding: 20rpx;
+}
+
+.index-banner swiper-item {
+    box-shadow: #cccccccc 0px 0px 10rpx;
+    border-radius: 16rpx;
+}
+
+.index-banner swiper {
+    height: 350rpx;
+}
+
+.slide-banner {
+    width: 100%;
+    height: 100%;
+    border-radius: 16rpx;
+}
+
+.index-poster {
+    position: relative;
+    text-align: center;
+    padding: 0 25rpx;
+    padding-bottom:15rpx;
+}
+
+.index-poster image {
+    width: 100%;
+}
+
+.icon-text {
+    color: #444444;
+    font-size: 24rpx;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.icon-image {
+    width: 132rpx;
+    height: 132rpx;
+}
+
+.icon-view {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  padding-left: 14rpx;
+  /* padding-right: 14rpx; */
+  margin-top: 8rpx;
+  flex-wrap: wrap;
+}
+.icon-item {
+  display: flex;
+  flex-direction: column;
+  width: 132;
+  margin-right: 65rpx;
+  align-items: center;
+  margin-bottom: 15rpx;
+}
+.icon-item3 {
+  display: flex;
+  flex-direction: column;
+  width: 132rpx;
+  margin-right: 0rpx;
+  align-items: center;
+  margin-bottom: 15rpx;
+}
+.banner-view {
+  display: flex;
+  justify-content: center;
+  margin-top: 30rpx;
+  margin-bottom: 30rpx;
+}
+.banner-image1 {
+    width: 710rpx;
+    height: 260rpx;
+    border-radius: 16rpx;
+    background-color: #ffffff
+}
+.banner-image2-1 {
+    width: 710rpx;
+    height: 156rpx;
+    border-radius: 16rpx;
+    background-color: #ffffff;
+    margin-top: 10rpx;
+    margin-left: 20rpx;
+}
+.banner-image2 {
+    width: 710rpx;
+    height: 156rpx;
+    border-radius: 16rpx;
+    background-color: #ffffff;
+    margin-top: 20rpx;
+    margin-left: 20rpx;
+}
+
+.banner-image3 {
+    width: 710rpx;
+    height: 156rpx;
+    border-radius: 16rpx;
+    background-color: #ffffff;
+    margin-top: 87rpx;
+}
+
+.goods-list {
+    position: relative;
+    padding: 0 20rpx;
+    margin-bottom: 20rpx;
+    padding-right: 0rpx;
+}
+.hot-goods-list{
+    position: relative;
+    margin-bottom: 20rpx; 
+}
+
+.list-title {
+    padding: 20rpx 0;
+    font-weight: 500;
+    color: #041505;
+}
+
+.goods {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* justify-content: space-between; */
+    margin-bottom: 20rpx;
+    margin-top: 10rpx;
+    /* max-height:1724rpx; */
+    max-height: 1742rpx;
+}
+.thisShopName {
+    font-size: 36rpx;
+    padding: 0 20rpx;
+}
+
+.shop-select ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    color: transparent;
+}
+
+.item-shop {
+    border-bottom: 1px solid #e4e4e4;
+    height: 80rpx;
+    line-height: 80rpx;
+}
+
+.shop-position {
+    justify-content: flex-start;
+}
+.scroll-view{
+  margin-top: 20rpx;
+  margin-bottom: 40rpx;
+}
+.type-view {
+  width: 152rpx;
+  height: 64rpx;
+  background-color: #ffffff;
+  border-radius: 36rpx;
+  margin-right: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+.type-name {
+  font-size: 28rpx;
+  color: #FF5E00;
+}
+.brand-view {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* justify-content: space-between; */
+  padding-bottom: 20rpx;
+}
+.brand-item {
+  width: 162rpx;
+  height: 162rpx;
+  border-radius: 16rpx;
+  margin-bottom: 20rpx;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20rpx;
+}
+.brand-image {
+  width: 130rpx;
+  height: 130rpx;
+}
+.brand-bg-view{
+  width: 710rpx;
+  height: 120rpx;
+  position: relative;
+  margin-top: 20rpx;
+}
+
+.brand-icon-view {
+  width: 240rpx;
+  height: 120rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center
+}
+.brand-icon-image {
+  width: 61rpx;
+  height: 61rpx;
+  /* background-color: #ff9000; */
+}
+.brand-name {
+  font-size: 24rpx;
+  color: #666666;
+  margin-top: 7rpx;
+}
+.brand-content {
+  width:384rpx;
+  height:68rpx;
+  font-size:24rpx;
+  color:#444444;
+  margin-top: 26rpx;
+  margin-left: 26rpx;
+}
+.brand-item-view{
+  display: flex;
+  flex-direction: row;
+}
+.dots{
+  position: absolute;
+  left: 0;
+  right: 0;
+  /* bottom: 218rpx; */
+  display: flex;
+  justify-content: center;
+}
+.dots .dot{
+  margin: 0 16rpx;
+  width: 16rpx;
+  height: 16rpx;
+  background: #D8D8D8;
+  border-radius: 8rpx;
+  transition: all .6s;
+}
+.dots .dot.active{
+  width: 16rpx;
+  background: #FF8600;
+} 
+.imageContainer{
+  width: 100%;
+  height: 511rpx;
+}
+.item{
+  height: 500rpx;
+  
+}
+.itemImg{
+  position: absolute;
+  width: 95%;
+  height: 433rpx;
+  border-radius: 15rpx;
+  z-index: 5;
+  opacity: 0.7;
+  top: 13%;
+  background-color: #FFFFFF;
+  margin: 20rpx;
+}
+
+.active{
+  opacity: 1;
+  z-index: 10;
+  height: 456rpx;
+  top: 7%;
+  transition:all .2s ease-in 0s;
+}
+.top-img {
+  width: 100%;
+  height: 106rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.activity-content {
+  font-size: 38rpx;
+  color: #FF4D00;
+  font-weight: bold;
+  position: absolute;
+  top: 112rpx;
+  left: 20rpx;
+  word-break:break-all;
+-webkit-box-orient:vertical;
+-webkit-line-clamp:1;
+overflow:hidden;
+text-overflow:ellipsis;
+display:-webkit-box;
+
+
+}
+.activity-date {
+  font-size: 24rpx;
+  color: #999999
+}
+.activity-btn {
+  width: 128rpx;
+  height: 44rpx;
+  border-radius: 24rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24rpx;
+  color: #FF5A00;
+  border: 1rpx #FF5A00 solid;
+}
+.activity-item {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  width: 93%;
+  top: 165rpx;
+  left: 20rpx;
+  right: 20rpx;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1rpx dashed #cccccc;
+  padding-bottom: 9rpx;
+}
+.activity-good {
+  width: 93%;
+  position: absolute;
+  top:240rpx;
+  left: 20rpx;
+  right: 20rpx;
+  display: flex;
+  align-items: center;
+}
+.activity-good-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center
+}
+.goodImg {
+  width: 150rpx;
+  height: 150rpx;
+  background-color: #cccccc;
+}
+.good-name {
+  color: #666666;
+  font-size: 22rpx;
+}
+.activity{
+  position: absolute;
+  z-index: 1000000;
+  background-color: rgba(0, 0, 0, 0.8);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  flex-direction: column;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+.activity_close_view{
+  width: 60rpx;
+  height: 60rpx;
+  position: absolute;
+  top: 50rpx;
+  right: 30rpx;
+}
+.activity_close{
+  width: 30rpx;
+  height: 30rpx;
+}
+.activity_center_image{
+  width: 730rpx;
+  height: 886rpx;
+}
+.activity_btn{
+  width: 324rpx;
+  height: 104rpx;
+  margin-top: 30rpx;
+}
+.activity_success_image{
+  width: 600rpx;
+  height: 811rpx;
+}
+.brand_backgroud{
+  width:710rpx;
+  height:120rpx;
+  position:absolute;
+  z-index: -1;
+}

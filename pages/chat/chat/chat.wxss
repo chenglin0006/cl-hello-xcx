@@ -1,0 +1,93 @@
+/* pages/chat/chat.wxss */
+page{
+  display: flex;
+  flex-direction: column;
+  height: 100%
+}
+.this_container{
+  display: flex;
+  flex-direction: column;
+  height: 100%
+}
+.message{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background-color: rgb(231,237,242);
+  padding-bottom: 20rpx;
+}
+.bottomView{
+  align-self: stretch;
+  height: 120rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center
+}
+.sendView{
+  width: 120rpx;
+  height: 65rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #FF9F42;
+  color:white;
+  font-size: 16px;
+  border-radius: 5rpx;
+  margin-right: 10rpx;
+}
+.photo{
+  width: 60rpx;
+  height: 48rpx;
+}
+.inputView{
+  display: flex;
+  flex-direction: row;
+  height: 80rpx;
+  border-radius: 40rpx;
+  background-color: #F7F7F7;
+  border: 1px solid #E4E4E4;
+  align-items: center;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  flex: 1;
+  margin-left: 20rpx;
+}
+.expression{
+  width: 60rpx;
+  height: 60rpx;
+  margin-left: 20rpx;
+  margin-right:20rpx;
+}
+.messageInput{
+  flex: 1;
+  height: 80rpx;
+  margin-left: 10rpx;
+  font-size: 32rpx
+}
+.moreView{
+  width: 100rpx;
+  height: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.send{
+  width: 60rpx;
+  height: 60rpx;
+}
+.emoj_view{
+  height:500rpx;
+  flex-direction: row;
+  display: flex;
+  flex-wrap: wrap;
+}
+.emoj_button{
+  width: 107rpx;
+  height: 107rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size:50rpx;
+
+}

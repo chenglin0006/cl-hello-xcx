@@ -1,0 +1,142 @@
+
+.main{
+  display: flex;
+  align-self: stretch;
+  flex-direction: column;
+  /* width: 100%; */
+
+  padding-left: 10rpx;
+  padding-right: 10rpx;
+}
+.self_main{
+  display: flex;
+  align-self: stretch;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
+}
+.time_view{
+  /* width: 100%; */
+  align-self: stretch;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.time_text{
+    color: #666;
+    font-size: 12px;
+    text-align: center;
+    margin: 6px 0;
+}
+.name{
+    font-size: 80%;
+    cursor: pointer;
+    margin: 0 0 8px;
+    color: rgba(0,0,0,0.87);
+}
+.arrow{
+  width: 0;
+  height: 0;
+  border-bottom: 20rpx solid #f6f6f6;
+  border-right: 20rpx solid transparent;
+}
+.message-box{
+  flex-direction: row;
+  display: flex;
+  align-self: stretch
+}
+.message{
+  background-color: #f6f6f6;
+  padding: 20rpx;
+  word-wrap: break-word;
+  color: rgba(0,0,0,0.87);
+  max-width: 500rpx;
+  border-radius: 20rpx;
+}
+.self_message{
+  background-color: #ff9f42;
+  padding: 20rpx;
+  word-wrap: break-word;
+  color: white;
+  max-width: 500rpx;
+  border-radius: 20rpx;
+}
+.bottom_arrow{
+  width: 0;
+  height: 0;
+  border-top: 20rpx solid #2c97e8;
+  border-left: 20rpx solid transparent;
+}
+.self_image_view{
+  background-color: #ffffff00;
+  padding: 0rpx;
+  max-width: 500rpx;
+}
+.image_view{
+  background-color: #ffffff00;
+  padding: 0rpx;
+  max-width: 500rpx;
+}
+.image{
+  max-width: 500rpx;
+}
+.touxiang{
+  width: 90rpx;
+  height: 90rpx;
+  background-color: lightgray;
+  margin-right: 20rpx;
+  margin-left: 20rpx;
+  border-radius: 45rpx;
+}
+.goodsImage{
+  width:180rpx;
+  height: 180rpx;
+}
+.goodsTxtView{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1
+}
+.goodsMessage{
+  display: flex;
+  flex-direction: row;
+  max-width: 500rpx;
+  background-color: #f6f6f6;
+  padding: 20rpx;
+  color: rgba(0,0,0,0.87);
+  border-radius: 20rpx;
+}
+.firstGoodsTxtView{
+  display: -webkit-box; 
+  text-overflow: ellipsis; 
+  overflow: hidden;           
+  -webkit-box-orient: vertical;   
+  -webkit-line-clamp: 2; 
+  margin-left: 20rpx;
+  font-size: 16px;
+  color: #333333;
+  line-height: 26px;
+}
+.secondGoodsTxtView{
+  -webkit-line-clamp: 1;
+  display: -webkit-box; 
+  text-overflow: ellipsis; 
+  overflow: hidden;           
+  -webkit-box-orient: vertical;  
+  font-size: 16px;
+  color: #999999;
+  margin-left: 20rpx;
+}
+.message_container{
+  display: flex;
+  flex-direction: column;
+}
+.isreaded{
+  color: #999999;
+  font-size: 26rpx;
+  margin-top: 10rpx;
+  align-self:flex-end;
+}

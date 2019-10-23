@@ -1,0 +1,23 @@
+<!--pages/chat/chatlist/chatlist.wxml-->
+
+<view wx:for='{{chatList}}' wx:key='{{index}}' data-friend="{{item}}">
+<navigator url='../chat/chat?clientId={{item.friendId}}&convId={{item.convId}}' hover-class="none">
+<view class='cell_container'>
+<image class='icon' src='{{!!clentData[item.friendId]?clentData[item.friendId].headPicUrl:""}}'></image>
+<view class='text_view'>
+<view class='first_view'>
+<text class='title'>{{!!clentData[item.friendId]?clentData[item.friendId].nickname:item.friendId}}</text>
+<text class='time'>{{item.updatedAt}}</text>
+</view>
+<view class='second_view'>
+<text class='message'>{{item.lastMessageMessage}}</text>
+<view wx:if="{{item.unreadMessagesCount>0}}" class='count_view'>
+<text class='count'>{{item.unreadMessagesCount>99?'99+':item.unreadMessagesCount}}</text>
+</view>
+</view>
+
+</view>
+</view>
+
+</navigator>
+</view>

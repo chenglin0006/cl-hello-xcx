@@ -1,0 +1,31 @@
+<!--pages/chat/chat.wxml-->
+<view class='this_container'>
+<scroll-view class='message' scroll-y bindscrolltoupper='bindscrolltoupper' bindscrolltolower='bindscrolltolower' bindscroll="bindscroll" scroll-top="{{scrollTop}}">
+<message wx:for="{{messages}}" wx:key='{{index}}' id="message_0" index='{{index}}' isself='{{item.isSelf}}' icon="{{!!clentData[item.from]?clentData[item.from].headPicUrl:''}}" name="{{!!clentData[item.from]?clentData[item.from].nickname:item.from}}" content="{{item.content}}" time="{{item.time}}" type="{{item.type}}" imageUrl="{{item.imageUrl}}" thumbnailURL="{{item.thumbnailURL}}" goodsImageUrl="{{item.goodsImageUrl}}" goodsTitle="{{item.goodsTitle}}" goodsSubTitle="{{item.goodsSubTitle}}" lastReadAt="{{lastReadAt}}" timestamp="{{item.timestamp}}" bind:clickImage="clickImage" bind:clickGoods="clickGoods"/>
+</scroll-view>
+<view class='bottomView'>
+
+<view class='inputView'>
+  <input class='messageInput' placeholder="请输入您要咨询的问题" bindinput="textChange" value='{{inputValue}}'   confirm-type='send' adjust-position='true' focus="{{inputFocus}}" bindfocus='bindfocus'></input>
+  
+</view>
+<image class='expression' bindtap='getExpression' src='../images/icon-biaoqing.png'></image>
+<view class='moreView' wx:if="{{inputValue.length==0}}">
+  <image class='photo' bindtap='getImage' src='../images/icon-IM-zp.png'></image>
+</view>
+<view class='sendView'  wx:else  bindtap='sendMessage'>
+  发送
+</view>
+</view>
+<scroll-view  scroll-y wx:if="{{isShowEmoj}}" >
+<view class='emoj_view'>
+  <view wx:for='{{smileys}}' wx:key='{{index}}' class='.emoj_button' bindtap='onClickEmoj' data-item="{{item}}">
+  <view>
+    {{item}}
+  </view>
+  </view>
+</view>
+
+</scroll-view>
+ 
+</view>
