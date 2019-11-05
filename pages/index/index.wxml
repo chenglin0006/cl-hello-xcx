@@ -8,8 +8,17 @@
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
     <block >
-      <text data-type="hello" bindtap="bindViewTap">前往hello</text>
+      <text data-type="own" bindtap="bindViewTap">查看我的信息</text>
     </block>
+  </view>
+  <view>
+    <map
+        style="width: 100%; height: 300px;"
+        latitude="{{latitude}}"
+        longitude="{{longitude}}"
+        scale='18'
+        markers="{{markers}}"
+      ></map>
   </view>
   <!-- 滚动banner -->
   <view class="index-banner"  wx:key="{{index}}" wx:if="{{imgUrls.length>0}}">

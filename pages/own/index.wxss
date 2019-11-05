@@ -1,0 +1,10 @@
+
+
+.container-own{
+    text-align: left;
+}
+
+.container-own .my-info{
+    color:#ff6633;
+    padding:10px;
+}

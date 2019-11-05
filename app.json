@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/hello/index",
-    "pages/outLink/outLink"
+    "pages/outLink/outLink",
+    "pages/own/index"
   ],
   "window":{
     "backgroundTextStyle":"light",

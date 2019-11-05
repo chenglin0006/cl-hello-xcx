@@ -14,21 +14,49 @@ Page({
     current: 0,
     imgUrls:[],
     changeTime: 0,
+    latitude: 23.099994,
+    longitude: 113.324520,
+    markers: [{
+      iconPath: "/resources/others.png",
+      id: 0,
+      latitude: 23.099994,
+      longitude: 113.324520,
+      width: 50,
+      height: 50
+    }]
   },
   //事件处理函数
   bindViewTap: function(event) {
     let type = event.target.dataset.type;
-    if(type == 'hello'){
+    if(type == 'own'){
       wx.navigateTo({
-        url: '../hello/index'
-      }) 
-    } else {
-      wx.navigateTo({
-        url: '../logs/logs'
+        url: '../own/index'
       }) 
     }
   },
+  getLocation:function(){
+    wx.getLocation({
+      type: 'gcj02', //返回可以用于wx.openLocation的经纬度
+      success: (res)=> {
+        const latitude = res.latitude
+        const longitude = res.longitude
+        this.setData({
+          latitude:latitude,
+          longitude:longitude,
+          markers:[{
+            iconPath: "/images/B&Tlogo@3x.png",
+            id: 0,
+            latitude: latitude,
+            longitude: longitude,
+            width: 20,
+            height: 20
+          }]
+        })
+      }
+     })
+  },
   onLoad: function () {
+    this.getLocation();
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,

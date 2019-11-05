@@ -1,0 +1,11 @@
+<view class="container-own">
+    <view class="my-info">
+        <view>cl-{{age}}</view>
+        <view wx:for="{{bookList}}" wx:key="{{item.id}}">
+            <view><text>{{item.name}}</text></view>
+        </view>
+        <view>
+            <canvas style="width: 300px; height: 200px;" canvas-id="firstCanvas"></canvas>
+        </view>
+    </view>
+</view>
