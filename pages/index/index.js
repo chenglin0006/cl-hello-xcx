@@ -33,6 +33,7 @@ Page({
     sectionCatogeryGoodsVOS2: null,
     sectionCatogeryGoodsVOS3: null,
     sectionCatogeryGoodsVOS4: null,
+    brandCurrent: 0,
   },
   //事件处理函数
   bindViewTap: function(event) {
@@ -232,5 +233,14 @@ Page({
       console.log(code)
       isFirstInit = true
       }, showLoad, true)
+  },
+  swiperChange: function (e) {
+    var that = this;
+    if (e.detail.source == 'touch') {
+      that.setData({
+        brandCurrent: e.detail.current,
+
+      })
+    }
   },
 })
