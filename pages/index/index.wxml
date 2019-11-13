@@ -35,3 +35,24 @@
   </view>
   </scroll-view>
 </view>
+<view class="goods-list">
+  <swiper bindchange="swiperChange" style="height:{{brandActivityVOS.length>1?840:brandActivityVOS[0].length*140}}rpx;margin-bottom:10rpx" indicator-dots="{{false}}" autoplay="{{false}}" interval="{{5000}}" duration="{{1000}}">
+    <block wx:for="{{brandActivityVOS}}" wx:key="{{index}}"  wx:for-item="childArr">
+      <swiper-item>
+      <view wx:for="{{childArr}}" wx:key="{{index2}}">
+          <view class="brand-bg-view" style="background-size: cover" data-brandids="{{item.brandId}}" data-brandname="{{item.brandName}}" data-brandactive="{{item.activityDesc}}" data-brandicon="{{item.img}}" data-activityid="{{item.activityId}}" bindtap="goBrandActivityDetial" >
+          <image src='./images/brandBg.png' class='brand_backgroud'/>
+            <view class="brand-item-view">
+              <view class="brand-icon-view">
+                <image class="brand-icon-image" src='{{item.img}}'/>
+                <text class="brand-name">{{item.brandName}}</text>
+              </view>
+              <text class="brand-content">{{item.activityDesc}}</text>
+              
+            </view>
+          </view>
+        </view>  
+      </swiper-item>
+    </block>
+  </swiper>
+</view>

@@ -4,6 +4,7 @@ const app = getApp()
 var baserequest = require("../../utils/baserequest.js")
 var url = require('../../configs/FurtureStoreUrl.js')
 var stringutil = require('../../utils/stringutil.js')
+let isFirstInit = true;
 
 Page({
   data: {
@@ -23,7 +24,15 @@ Page({
       longitude: 113.324520,
       width: 50,
       height: 50
-    }]
+    }],
+    activityCatogeryVOS: [],//活动
+    brandActivityVOS: [],//品牌活动
+    bnqBigBrand: [],
+    iconVOs: [],
+    sectionCatogeryGoodsVOS1: null,
+    sectionCatogeryGoodsVOS2: null,
+    sectionCatogeryGoodsVOS3: null,
+    sectionCatogeryGoodsVOS4: null,
   },
   //事件处理函数
   bindViewTap: function(event) {
@@ -84,6 +93,7 @@ Page({
       })
     }
     this.getAdScreenList(1004,true);
+    this.getMainData(1004,false);
   },
   getUserInfo: function(e) {
     console.log(e)
@@ -191,5 +201,36 @@ Page({
     }, (code) => {
       console.log(code)
       }, skowLoad, true)
-  }
+  },
+  getMainData: function (shopCode=1004,showLoad=false) {
+    let _this = this;
+    baserequest.request(url.homepageCollection(1, shopCode, 10), (result) => {
+      isFirstInit = false
+      let data = result.data;
+      let activityCatogeryVOS = (data.activityCatogeryVOS && data.activityCatogeryVOS.length > 0 )? data.activityCatogeryVOS : []
+      let brandActivityVOS = data.brandActivityVOS && data.brandActivityVOS.length > 0 ? data.brandActivityVOS : []
+      let newBrandActivityVOS = []
+      for (let i = 0; i < (brandActivityVOS.length / 6) + 1; i++) {
+        let childArr = brandActivityVOS.slice(6 * i, 6 * (i + 1))
+        if (childArr.length > 0) {
+          newBrandActivityVOS.push(childArr)
+        }
+
+      }
+      _this.setData({
+        activityCatogeryVOS: activityCatogeryVOS,
+        brandActivityVOS: newBrandActivityVOS,
+        bnqBigBrand: data.bnqBigBrand,
+        iconVOs: data.iconVOs.slice(0, parseInt(data.iconVOs.length / 4) * 4) ,
+        sectionCatogeryGoodsVOS1: data.sectionCatogeryGoodsVOS1,
+        sectionCatogeryGoodsVOS2: data.sectionCatogeryGoodsVOS2,
+        sectionCatogeryGoodsVOS3: data.sectionCatogeryGoodsVOS3,
+        sectionCatogeryGoodsVOS4: data.sectionCatogeryGoodsVOS4,
+      })
+
+    }, (code) => {
+      console.log(code)
+      isFirstInit = true
+      }, showLoad, true)
+  },
 })
