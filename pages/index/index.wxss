@@ -15,6 +15,27 @@
   background:#FD8815 100%;
   margin-top:30rpx;
 }
+.style-list{
+  color:#F8953C;
+  display:flex;
+  font-size:26rpx;
+  justify-content:center;
+  padding-top:40rpx;
+  padding-bottom:10rpx;
+}
+.style-list .style-item{
+  border:solid 1rpx #868282;
+  border-radius:36rpx;
+  padding: 0 20rpx;
+  margin-right:20rpx;
+}
+.img-list{
+  padding:10rpx;
+}
+.img-list .img-item{
+  width:100%;
+  border-radius:30rpx;
+}
 .userinfo {
   display: flex;
   flex-direction: column;
@@ -241,7 +262,6 @@ page{
 .goods-list {
     position: relative;
     padding: 0 20rpx;
-    margin-bottom: 20rpx;
     padding-right: 0rpx;
     padding-bottom: 20rpx;
     background: #f5f5f5;

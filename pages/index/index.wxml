@@ -22,6 +22,18 @@
   </view>
 </scroll-view>
 </view>
+<view class="style-list">
+  <view class="style-item">家装设计体系</view>
+  <view class="style-item">原创设计</view>
+  <view class="style-item">VR体验</view>
+  <view class="style-item">风水大师</view>
+</view>
+<view class="img-list">
+  <image class="img-item" src="./images/jiazhuang.jpeg"></image>
+  <image class="img-item" src="./images/sheji.jpeg"></image>
+  <image class="img-item" src="./images/vr.jpeg"></image>
+  <image class="img-item" src="./images/fengshui.jpeg"></image>
+</view>
 <view class="goods-list">
   <swiper bindchange="swiperChange" style="height:{{brandActivityVOS.length>1?840:brandActivityVOS[0].length*140}}rpx;margin-bottom:10rpx" indicator-dots="{{false}}" autoplay="{{false}}" interval="{{5000}}" duration="{{1000}}">
     <block wx:for="{{brandActivityVOS}}" wx:key="{{index}}"  wx:for-item="childArr">
