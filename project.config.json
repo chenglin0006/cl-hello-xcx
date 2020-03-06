@@ -15,11 +15,13 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.6.4",
 	"appid": "wx24b0bb215ead31e3",
-	"projectname": "cl-hello-xcx-init",
+	"projectname": "cl-hello-xcx",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
 	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,

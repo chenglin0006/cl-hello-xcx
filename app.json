@@ -11,31 +11,5 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle":"black"
-  },
-  "tabBar": {
-    "position": "bottom",
-    "borderStyle": "black",
-    "selectedColor": "#f28101",
-    "backgroundColor": "#ffffff",
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "text": "首页",
-        "iconPath": "images/index.png",
-        "selectedIconPath": "images/index_select.png"
-      },
-      {
-        "pagePath": "pages/hello/index",
-        "text": "hello",
-        "iconPath": "images/goods.png",
-        "selectedIconPath": "images/goods_select.png"
-      },
-      {
-        "pagePath": "pages/logs/logs",
-        "text": "log",
-        "iconPath": "images/icon-saoyisao.png",
-        "selectedIconPath": "images/icon-saoyisao.png"
-      }
-    ]
   }
 }

@@ -5,17 +5,16 @@ const setShop = (shopCode,shopName)=>{
   wx.setStorageSync('shopName', shopName);
   wx.setStorageSync('shopCode', shopCode);
 }
-const loaction=()=>{  
+const loaction=(callback)=>{  
     wx.getLocation({
         type: 'wgs84',
         success: function (res) {
             console.log(JSON.stringify(res))
-            getLocal(res.longitude,res.latitude)
+            callback(res);
         },
         fail: function (res) {
             console.log('fail' + JSON.stringify(res));
-            wx.setStorageSync('shopName','上海龙阳店');
-            wx.setStorageSync('shopCode',1004);
+            callback(res);
         }
      })
 }
@@ -32,7 +31,7 @@ const getLocal=(longitude,latitude)=>{
       console.log(code)
     })
 }
-const getUserLocation=() =>{
+const getUserLocation=(callback) =>{
     let _this = this;
     wx.getSetting({
       success: (res) => {
@@ -79,7 +78,7 @@ const getUserLocation=() =>{
         }
         else {
           //调用wx.getLocation的API
-          loaction();
+          loaction(callback);
         }
       }
     })

@@ -1,25 +1,6 @@
 <!--index.wxml-->
 <view class="container">
 <scroll-view class='scrollView' scroll-y>
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-    <block >
-      <text data-type="own" bindtap="bindViewTap">查看我的信息</text>
-    </block>
-  </view>
-  <view>
-    <map
-        style="width: 100%; height: 300px;"
-        latitude="{{latitude}}"
-        longitude="{{longitude}}"
-        scale='18'
-        markers="{{markers}}"
-      ></map>
-  </view>
   <!-- 滚动banner -->
   <view class="index-banner"  wx:key="{{index}}" wx:if="{{imgUrls.length>0}}">
     <swiper autoplay="{{autoplay}}" current="{{current}}" interval="{{changeTime*1000}}" bindchange='onSlideChangeEnd' indicator-color="#e6e6e6" indicator-active-color="#ed970c" indicator-dots="true" autoplay="true" interval="3000" duration="500" circular="true">
