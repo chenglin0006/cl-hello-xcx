@@ -1,5 +1,11 @@
 <!--index.wxml-->
 <view class="container">
+<view class="top-member">
+  <view>366人已报名</view>
+  <view>
+    <button>立即报名</button>
+  </view>
+</view>
 <scroll-view class='scrollView' scroll-y>
   <!-- 滚动banner -->
   <view class="index-banner"  wx:key="{{index}}" wx:if="{{imgUrls.length>0}}">
@@ -14,7 +20,7 @@
       </block>
     </swiper>
   </view>
-  </scroll-view>
+</scroll-view>
 </view>
 <view class="goods-list">
   <swiper bindchange="swiperChange" style="height:{{brandActivityVOS.length>1?840:brandActivityVOS[0].length*140}}rpx;margin-bottom:10rpx" indicator-dots="{{false}}" autoplay="{{false}}" interval="{{5000}}" duration="{{1000}}">

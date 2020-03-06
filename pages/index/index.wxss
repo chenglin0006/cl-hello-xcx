@@ -2,6 +2,19 @@
 .container{
   background-color:#F5F5F5;
 }
+.top-member{
+  margin:auto;
+  text-align:center;
+  color:#101010 100%;
+  font-size:28rpx;
+  padding:54px 0 84rpx 0;
+}
+.top-member button{
+  color:white;
+  width:512rpx;
+  background:#FD8815 100%;
+  margin-top:30rpx;
+}
 .userinfo {
   display: flex;
   flex-direction: column;
