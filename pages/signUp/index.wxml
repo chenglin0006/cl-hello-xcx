@@ -1,0 +1,35 @@
+<view class="sign-up-page">
+    <view class="head-img">
+        <image src="./images/login-bgimages.png" />
+    </view>
+    <view class="sign-up-form">
+        <form  bindsubmit="formSubmit" class='book-form'>
+        <picker bindchange="bindCityChange" value="{{targetCity}}" range="{{cityEnum}}">
+            <view class="picker-item">
+                <view class="label-text">选择地区</view>
+                <view class="value-text">{{cityEnum[targetCity]}}</view>
+            </view>
+        </picker>
+        <picker bindchange="bindShopChange" range-key="name" value="{{targetShop}}" range="{{shopList}}">
+            <view class="picker-item">
+                <view class="label-text">选择门店</view>
+                <view class="value-text">{{shopList[targetShop].name}}</view>
+            </view>
+        </picker>
+            <view class="picker-item">
+                <view class="label-text">姓名</view>
+                <view class="value-text">
+                    <input placeholder-class='placeholder' bindinput='inputChangeHandler' name='username' id='username' placeholder='请输入您的姓名' value='{{username}}'></input>
+                </view>
+            </view>
+            <view class="picker-item">
+                <view class="label-text">电话</view>
+                <view class="value-text">
+                    <input placeholder-class='placeholder' bindinput='inputChangeHandler' name='telephone' id='telephone' placeholder='请输入您的电话' value='{{telephone}}'></input>
+                </view>
+            </view>
+            <button class='submit-btn' form-type="submit">立即秒杀</button>
+            <!-- <button class='book inputed' form-type="submit">立即预约</button> -->
+        </form>
+    </view>
+</view>

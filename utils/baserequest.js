@@ -14,6 +14,13 @@ var BaseRequest={
   request(urlParam, successCB,failureCB,showLoading=true, showMessage=true){
     baseRequest(config().furtureStoreDomain, urlParam, successCB, failureCB, showLoading, showMessage)
   },
+
+  /**
+   * 家博会相关的请求
+   */
+  jbhRequest(urlParam, successCB, failureCB, showLoading = true, showMessage = true) {
+    baseRequest(config().jiabohui, urlParam, successCB, failureCB, showLoading, showMessage)
+  },
   /**
    * 用户相关的请求（地址相关）
    */

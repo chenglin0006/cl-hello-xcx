@@ -24,6 +24,7 @@ var configData={
     // wxAdimMarketDomain: 'http://wxadmin-dev.market.bnq.com.cn'
     leanCloudAppId: 'CEMJjIxtsex2GUE31pMmwYfl-gzGzoHsz',
     leanCloudKey: 'Ue6G2VavGYm7axwKr3sMgXzz',
+    jiabohui: 'https://homefair.bnq.com.cn',
   },
   staging:{
     ztDomain: 'http://uat1.zt.bnq.com.cn',
@@ -44,6 +45,7 @@ var configData={
     tradeDomain:'https://trade-test.bnq.com.cn/trade-web',//交易链路：结算、下单、支付、售后
     leanCloudAppId: 'y7xBReL195sPfWIH6kiEnBsz-gzGzoHsz',
     leanCloudKey: '05U0OHEbc8CMe2hBt1MgWCEs',
+    jiabohui: 'https://homefair.bnq.com.cn',
 
   },
   dev:{
@@ -64,6 +66,7 @@ var configData={
     pointDomain: 'http://customer-dev.bnq.com.cn/customer',//积分、地址
     cardDomain: 'http://cart-dev.bnq.com.cn/cartwebService',//购物车
     tradeDomain: 'https://trade-dev.bnq.com.cn/trade-web',//交易链路：结算、下单、支付
+    jiabohui: 'https://homefair.bnq.com.cn',
   }
   
 }

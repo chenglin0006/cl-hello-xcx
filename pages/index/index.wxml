@@ -1,57 +1,86 @@
 <!--index.wxml-->
-<view class="container">
-<view class="top-member">
-  <view>366人已报名</view>
-  <view>
-    <button>立即报名</button>
+<view class="container index-page">
+  <view class="head-div">
+      <image src='./images/head.png'></image>
   </view>
-</view>
-<scroll-view class='scrollView' scroll-y>
-  <!-- 滚动banner -->
-  <view class="index-banner"  wx:key="{{index}}" wx:if="{{imgUrls.length>0}}">
-    <swiper autoplay="{{autoplay}}" current="{{current}}" interval="{{changeTime*1000}}" bindchange='onSlideChangeEnd' indicator-color="#e6e6e6" indicator-active-color="#ed970c" indicator-dots="true" autoplay="true" interval="3000" duration="500" circular="true">
-      <block wx:for="{{imgUrls}}" wx:key="{{item.id}}">
-        <swiper-item style="overflow:hidden">
-          <image src="{{item.mainPicUrl}}" mode="widthFix" class="slide-banner" attr="{{item.title}}" data-type="{{item.detailType}}" data-id="{{item.id}}" data-href="{{item.h5Url}}" data-miniProgramUrl="{{item.miniProgramUrl}}" data-miniProgramAppId="{{item.miniProgramAppId}}" 
-          data-banner='{{item.mainPicUrl}}'
-          bindtap="jumpLink"
-            />
-        </swiper-item>
-      </block>
-    </swiper>
+  <view class="join-div" id="proMain">
+    <view class="go-btn">
+    <text>立即报名</text>
+        <image src="https://res1.bnq.com.cn/4dc5c30d-374d-450d-b51f-1274f74da3b8?t=1583939767697"></image>
+    </view>
+    <view class="number-div">
+        <view class="number-desc">已浏览人数</view>
+        <view class="number">{{(totalNum*16.13+5000)}}人</view>
+    </view>
+    <view class="number-div">
+        <view class="number-desc">已报名人次</view>
+        <view class="number">{{(totalNum*6.43+2000)}}人</view>
+    </view>
+    <view class="number-div">
+        <view class="number-desc">已分享人次</view>
+        <view class="number">{{(totalNum*11.32+3000)}}人</view>
+    </view>
   </view>
-</scroll-view>
-</view>
-<view class="style-list">
-  <view class="style-item">家装设计体系</view>
-  <view class="style-item">原创设计</view>
-  <view class="style-item">VR体验</view>
-  <view class="style-item">风水大师</view>
-</view>
-<view class="img-list">
-  <image class="img-item" src="./images/jiazhuang.jpeg"></image>
-  <image class="img-item" src="./images/sheji.jpeg"></image>
-  <image class="img-item" src="./images/vr.jpeg"></image>
-  <image class="img-item" src="./images/fengshui.jpeg"></image>
-</view>
-<view class="goods-list">
-  <swiper bindchange="swiperChange" style="height:{{brandActivityVOS.length>1?840:brandActivityVOS[0].length*140}}rpx;margin-bottom:10rpx" indicator-dots="{{false}}" autoplay="{{false}}" interval="{{5000}}" duration="{{1000}}">
-    <block wx:for="{{brandActivityVOS}}" wx:key="{{index}}"  wx:for-item="childArr">
-      <swiper-item>
-      <view wx:for="{{childArr}}" wx:key="{{index2}}">
-          <view class="brand-bg-view" style="background-size: cover" data-brandids="{{item.brandId}}" data-brandname="{{item.brandName}}" data-brandactive="{{item.activityDesc}}" data-brandicon="{{item.img}}" data-activityid="{{item.activityId}}" bindtap="goBrandActivityDetial" >
-          <image src='./images/brandBg.png' class='brand_backgroud'/>
-            <view class="brand-item-view">
-              <view class="brand-icon-view">
-                <image class="brand-icon-image" src='{{item.img}}'/>
-                <text class="brand-name">{{item.brandName}}</text>
+
+  <view class="activity-div">
+    <view class="main">
+        <image src='./images/fengbao.png'></image>
+    </view>
+    <view class="activity-list" wx:if="{{!(brandList.length===0 && hotSkuList.length===0)}}"> 
+        <view class="activity-jbh-item">
+            <image src='./images/76.png'></image>
+        </view>
+        <view class="activity-jbh-item">
+            <image src='./images/85.png'></image>
+        </view>
+    </view>
+  </view>
+  <view class="tag-div">
+    <a  wx:key="{{item.id}}" wx:for="{{tagList}}" class="{{'tag-item '+'item-'+index}}">{{item.name}}</a>
+  </view>
+  <view class="main-content">
+    <view
+        wx:key="{{item.id}}"
+        wx:for="{{tagList}}"
+        class="tag-pic-item"
+    >
+      <image wx:if="{{item.mainPic}}" src="{{item.mainPic}}"></image>
+    </view>
+    <view id="pinpai" class="brand-type type-div" >
+      <view class="type-title">
+          <view class="type-name">品牌展馆</view>
+      </view>
+      <view class="list-content">
+        <view class="brand-line" wx:for="{{brandList}}">
+          <view class="brand-item" wx:key="{{item.brand}}" wx:for="{{item}}" wx:for-item="ele">
+              <view class="no-div">{{ele.noStr}}</view>
+              <view class="image-div">
+                  <image wx:if="{{ele.logo}}" src="{{ele.logo}}" />
               </view>
-              <text class="brand-content">{{item.activityDesc}}</text>
-              
-            </view>
+              <view class="brand-name">{{ele.brand}}</view>
           </view>
-        </view>  
-      </swiper-item>
-    </block>
-  </swiper>
+        </view>
+      </view>
+    </view>
+    <view id="baopin" class="type-div hot-type">
+        <view class="type-title">
+            <view class="type-name">爆品秒杀</view>
+        </view>
+        <view class="hot-list">
+            <view wx:for="{{hotSkuList}}" data-brand="{{detailData.sapSkuNoFlag}}" bindtap="bindViewTap" wx:for-item="detailData"  class="hot-item">
+                <view class="image-div">
+                    <image wx:if="{{detailData.listImg}}" src="{{detailData.listImg}}" />
+                </view>
+                <view class="hot-content">
+                        <view class="name">{{detailData.itemName}}</view>
+                        <view class="price">
+                            <span class="now"><span class="unit">¥</span><span>{{detailData.nowPrice}}</span></span>
+                            <span class="before"><span class="unit">¥</span><span>{{detailData.beforePrice}}</span></span>
+                            <view class="go-btn">去抢购</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+  </view>
 </view>

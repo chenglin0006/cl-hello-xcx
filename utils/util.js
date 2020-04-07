@@ -71,10 +71,24 @@ function formatTimeTwo(number, format) {
   return format;
 }
 
+//深拷贝
+function deepClone(obj){
+  var str, newobj =  obj&&obj.constructor&&obj.constructor === Array ? [] : {};
+  if (typeof obj !== 'object') {
+      return;
+  } else {
+      for (var i in obj) {
+          newobj[i] = typeof obj[i] === 'object' ? deepClone(obj[i]) : obj[i];
+      }
+  }
+  return newobj;
+}
+
 module.exports = {
   formatTimeTwo:formatTimeTwo,
   formatTime: formatTime,
   formatForCalendar: formatForCalendar,
   getCurrentPageUrl: getCurrentPageUrl,
-  getCurrentPageUrlWithArgs: getCurrentPageUrlWithArgs
+  getCurrentPageUrlWithArgs: getCurrentPageUrlWithArgs,
+  deepClone: deepClone,
 }

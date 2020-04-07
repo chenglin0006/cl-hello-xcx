@@ -6,44 +6,50 @@ var url = require('../../configs/FurtureStoreUrl.js')
 const locationUtil = require('../../utils/locationUtil.js');
 var stringutil = require('../../utils/stringutil.js')
 let isFirstInit = true;
+var Tools = require('../../utils/util');
+
+let hotJson = require('./json/hotJson').default;
+let shopCodeJson = require('./json/shopCode').default;
+let brandJson = require('./json/brandData').default;
 
 Page({
   data: {
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    current: 0,
-    imgUrls:[],
-    changeTime: 0,
+    totalNum: 1,
+    brandList: [],
+    hotSkuList: [],
+    tagList:[{
+        id: 'jiazhuang',
+        name: '家装全案设计',
+        mainPic: './images/jiazhuang.png',
+    }, {
+        id: 'yuanchuang',
+        name: '原创设计展',
+        mainPic: './images/yuanchuang.png',
+    }, {
+        id: 'vr',
+        name: 'VR体验',
+        mainPic: './images/vr.png',
+    }, {
+        id: 'fengshui',
+        name: '家居风水',
+        mainPic: './images/fengshui.png',
+    }, {
+        id: 'pinpai',
+        name: '品牌展馆',
+    }, {
+        id: 'baopin',
+        name: '爆品秒杀',
+    }],
+    cityName:'武汉',
     latitude: 23.099994,
     longitude: 113.324520,
-    markers: [{
-      iconPath: "/resources/others.png",
-      id: 0,
-      latitude: 23.099994,
-      longitude: 113.324520,
-      width: 50,
-      height: 50
-    }],
-    activityCatogeryVOS: [],//活动
-    brandActivityVOS: [],//品牌活动
-    bnqBigBrand: [],
-    iconVOs: [],
-    sectionCatogeryGoodsVOS1: null,
-    sectionCatogeryGoodsVOS2: null,
-    sectionCatogeryGoodsVOS3: null,
-    sectionCatogeryGoodsVOS4: null,
-    brandCurrent: 0,
   },
   //事件处理函数
   bindViewTap: function(event) {
-    let type = event.target.dataset.type;
-    if(type == 'own'){
-      wx.navigateTo({
-        url: '../own/index'
-      }) 
-    }
+    let sapSkuNoFlag = event.currentTarget.dataset.brand;
+    wx.navigateTo({
+      url: '../signUp/index?sapSkuNo='+sapSkuNoFlag
+    }) 
   },
   onLoad: function () {
     // this.getLocation();
@@ -53,107 +59,187 @@ Page({
         longitude:res.longitude,
       })
     })
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse){
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
+    this.initData();
+    this.getTotalNumber();
+  },
+
+  initData: function(e){
+    let cityName  = this.data.cityName;
+    let skuListStr = this.initJsonData(cityName);
+    let shopCode = '';
+    let shopCodeList = this.initCityJson();
+    let cityBrandList = this.initBrandData(cityName);
+    var brandListTemp = [];
+    for(var i=0;i<cityBrandList.length;i+=3){
+      brandListTemp.push(cityBrandList.slice(i,i+3));
     }
-    this.getAdScreenList(1004,true);
-    this.getMainData(1004,false);
-  },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
+    shopCodeList.forEach((ele)=>{
+        if(cityName.indexOf(ele.city)!==-1){
+            shopCode = ele.shopCode;
+        }
+    })
+    this.getHotSkuList(shopCode,skuListStr);
     this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
+      brandList:brandListTemp
     })
   },
-  onSlideChangeEnd: function (e) {
-    wx.setStorage({ key: "current", data: e.detail.current });
-  },
-  jumpLink:function(e){
-    let h5Url = e.target.dataset.banner;
-    wx.navigateTo({
-      url: '../outLink/outLink?h5Url='+encodeURIComponent(h5Url)
-    })
-  },
-  getAdScreenList: function (shopCode=1004,skowLoad=true) {
+
+  getHotSkuList: function(shopCode,sapSkuCodes){
     let _this = this;
-    baserequest.cmsRequest(url.getAdScreenList(5, shopCode, 10, 4, 1, 10), (result) => {
-      let data = result.data;
-      let imgUrls = data.pictureList && data.pictureList.length > 0 ? data.pictureList : []
-      console.log('imgUrls===', imgUrls)
-      _this.setData({
-        changeTime: data.changeTime,
-        imgUrls: imgUrls.map((item, i) => {
-          item.mainPicUrl = stringutil.imageRest(item.mainPicUrl, 690, 376)
-          return item;
-        })
+    baserequest.request(url.jbhSkuCollection(shopCode, sapSkuCodes), (result) => {
+      isFirstInit = false;
+      const respData = result.data;
+      const skuParams = sapSkuCodes.split(',');
+      let skuObj = {}
+      let noInfo = [];
+      skuParams.forEach((s) => {
+          let list = [];
+          respData.forEach((ele, index) => {
+              ele.skuDtoList.forEach((i) => {
+                  if (i.sapSkuNo && s &&`${i.sapSkuNo}` === `${s}`) {
+                      list.push(Tools.deepClone(ele));
+                  }
+              });
+          });
+          if(list.length>0){
+              list[0].sapSkuNoFlag = s;
+              skuObj[s]=list[0];
+          } else {
+              console.log('没有返回信息的商品:',s);
+              noInfo.push(s);
+          }
       });
+      const arr = [];
+      skuParams.forEach((ele)=>{
+          if(skuObj[ele]){
+              arr.push(skuObj[ele]);
+          }
+      })
+      var data = [];
+      var obj = {};
+      var reapeatData=[];
+      for(var i =0; i<arr.length; i++){
+          if(!obj[arr[i].id]){
+              data.push(arr[i]);
+              obj[arr[i].id] = true;
+          } else {
+              reapeatData.push(arr[i].id+'-'+arr[i].sapSkuNoFlag);
+              console.log('重复了的商品:',arr[i].id+'-'+arr[i].sapSkuNoFlag);
+          }
+      }
+      hotJson.forEach((ele)=>{
+          data.forEach((i)=>{
+              if(ele.sku&&ele.sku === i.sapSkuNoFlag){
+                  i.nowPrice = ele.activityPrice;
+                  i.beforePrice = ele.realPrice;
+              }
+          })
+      })
+      _this.setData({
+        hotSkuList:data
+      })
     }, (code) => {
       console.log(code)
-      }, skowLoad, true)
+      isFirstInit = true
+      }, false, true)
   },
-  getMainData: function (shopCode=1004,showLoad=false) {
-    let _this = this;
-    baserequest.request(url.homepageCollection(1, shopCode, 10), (result) => {
-      isFirstInit = false
-      let data = result.data;
-      let activityCatogeryVOS = (data.activityCatogeryVOS && data.activityCatogeryVOS.length > 0 )? data.activityCatogeryVOS : []
-      let brandActivityVOS = data.brandActivityVOS && data.brandActivityVOS.length > 0 ? data.brandActivityVOS : []
-      let newBrandActivityVOS = []
-      for (let i = 0; i < (brandActivityVOS.length / 6) + 1; i++) {
-        let childArr = brandActivityVOS.slice(6 * i, 6 * (i + 1))
-        if (childArr.length > 0) {
-          newBrandActivityVOS.push(childArr)
-        }
 
-      }
-      _this.setData({
-        activityCatogeryVOS: activityCatogeryVOS,
-        brandActivityVOS: newBrandActivityVOS,
-        bnqBigBrand: data.bnqBigBrand,
-        iconVOs: data.iconVOs.slice(0, parseInt(data.iconVOs.length / 4) * 4) ,
-        sectionCatogeryGoodsVOS1: data.sectionCatogeryGoodsVOS1,
-        sectionCatogeryGoodsVOS2: data.sectionCatogeryGoodsVOS2,
-        sectionCatogeryGoodsVOS3: data.sectionCatogeryGoodsVOS3,
-        sectionCatogeryGoodsVOS4: data.sectionCatogeryGoodsVOS4,
+  initJsonData: function(cityName){
+      let hotSkuList = [];
+      hotJson.forEach((ele)=>{
+          if(ele.allCountry==='是' && ele.notInCitys===''){
+              hotSkuList.push(ele);
+          } else if(ele.allCountry==='是' && ele.notInCitys){
+              let notInCityList = ele.notInCitys.split(',');
+              //当前城市不包含在notInCitys里面
+              let hasFlag=false;
+              notInCityList.forEach((i)=>{
+                  if(cityName.indexOf(i)>-1 || i.indexOf(cityName)>-1){
+                      hasFlag = true;
+                  }
+              })
+              if(!hasFlag){
+                  hotSkuList.push(ele);
+              }
+          } else if(ele.citys){
+              let cityList = ele.citys.split(',');
+              let hasFlag=false;
+              cityList.forEach((i)=>{
+                  if(cityName.indexOf(i)>-1 || i.indexOf(cityName)>-1){
+                      hasFlag = true;
+                  }
+              })
+              if(hasFlag){
+                  hotSkuList.push(ele);
+              }
+          }
       })
+      let skuList = [];
+      hotSkuList.forEach((ele)=>{
+          if(ele.sku){
+              skuList.push(ele.sku);
+          }
+      })
+      return skuList.join(',')
+  },
+
+  initCityJson: function(e){
+      let shopCodeList = [];
+      Object.keys(shopCodeJson).forEach((ele)=>{
+          let obj = shopCodeJson[ele];
+          obj.city = ele;
+          shopCodeList.push(obj);
+      })
+      return shopCodeList;
+  },
+
+  initBrandData: function(cityName){
+    let brandList = [];
+    brandJson.forEach((ele)=>{
+        if(ele.allCountry==='是' && ele.notInCitys===''){
+            brandList.push(ele);
+        } else if(ele.allCountry==='是' && ele.notInCitys){
+            let notInCityList = ele.notInCitys.split(',');
+            //当前城市不包含在notInCitys里面
+            let hasFlag=false;
+            notInCityList.forEach((i)=>{
+                if(cityName.indexOf(i)>-1 || i.indexOf(cityName)>-1){
+                    hasFlag = true;
+                }
+            })
+            if(!hasFlag){
+                brandList.push(ele);
+            }
+        } else if(ele.citys){
+            let cityList = ele.citys.split(',');
+            let hasFlag=false;
+            cityList.forEach((i)=>{
+                if(cityName.indexOf(i)>-1 || i.indexOf(cityName)>-1){
+                    hasFlag = true;
+                }
+            })
+            if(hasFlag){
+                brandList.push(ele);
+            }
+        }
+    })
+    brandList.forEach((ele,index)=>{
+        ele.noStr ='NO:'+(1111+index);
+    })
+    return brandList;
+},
+  getTotalNumber: function(e) {
+    let _this = this;
+    baserequest.jbhRequest({
+      type:'get',
+      param: null,
+      url: '/dcmall-api-server/app/appExpoInterest/countOrderByWay/1242'
+    }, (result) => {
+      
 
     }, (code) => {
       console.log(code)
       isFirstInit = true
-      }, showLoad, true)
-  },
-  swiperChange: function (e) {
-    var that = this;
-    if (e.detail.source == 'touch') {
-      that.setData({
-        brandCurrent: e.detail.current,
-
-      })
-    }
+      }, false, true)
   },
 })
