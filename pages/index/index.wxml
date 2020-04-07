@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="container index-page">
   <view class="head-div">
-      <image src='./images/head.png'></image>
+      <image src='https://res1.bnq.com.cn/4370a5a3-5098-4ad1-81bc-c3bf83443fe7?t=1586256405520'></image>
   </view>
   <view class="join-div" id="proMain">
     <view class="go-btn">
@@ -24,14 +24,14 @@
 
   <view class="activity-div">
     <view class="main">
-        <image src='./images/fengbao.png'></image>
+        <image src='https://res1.bnq.com.cn/592c105d-20e4-4ae6-9c5f-27ada840d755?t=1586256446446'></image>
     </view>
     <view class="activity-list" wx:if="{{!(brandList.length===0 && hotSkuList.length===0)}}"> 
         <view class="activity-jbh-item">
-            <image src='./images/76.png'></image>
+            <image src='https://res1.bnq.com.cn/034c8615-2aec-43f2-9e3a-d21682b5ecbc?t=1586256474427'></image>
         </view>
         <view class="activity-jbh-item">
-            <image src='./images/85.png'></image>
+            <image src='https://res1.bnq.com.cn/e126ebd3-7b4b-4d01-9756-4f5023c403e7?t=1586256498102'></image>
         </view>
     </view>
   </view>

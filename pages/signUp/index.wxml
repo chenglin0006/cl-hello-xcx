@@ -1,6 +1,6 @@
 <view class="sign-up-page">
     <view class="head-img">
-        <image src="./images/login-bgimages.png" />
+        <image src="https://res1.bnq.com.cn/c5e511db-3ff5-48d3-82b1-9d0aca03328a?t=1586256661802" />
     </view>
     <view class="sign-up-form">
         <form  bindsubmit="formSubmit" class='book-form'>

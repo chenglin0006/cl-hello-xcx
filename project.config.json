@@ -50,6 +50,14 @@
 					"id": -1,
 					"name": "pages/signUp/index",
 					"pathName": "pages/signUp/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 1,
+					"name": "pages/index/index",
+					"pathName": "pages/index/index",
+					"query": "",
 					"scene": null
 				}
 			]

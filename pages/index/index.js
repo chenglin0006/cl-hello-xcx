@@ -20,19 +20,19 @@ Page({
     tagList:[{
         id: 'jiazhuang',
         name: '家装全案设计',
-        mainPic: './images/jiazhuang.png',
+        mainPic: 'https://res1.bnq.com.cn/0bb61f6f-6f17-4189-9ebd-12820475259b?t=1586255888868',
     }, {
         id: 'yuanchuang',
         name: '原创设计展',
-        mainPic: './images/yuanchuang.png',
+        mainPic: 'https://res1.bnq.com.cn/780a3921-6e84-40f8-a1e4-e40d32905cf5?t=1586255936867',
     }, {
         id: 'vr',
         name: 'VR体验',
-        mainPic: './images/vr.png',
+        mainPic: 'https://res1.bnq.com.cn/76e0bea3-2f50-45ce-8ff0-27544d8510fe?t=1586255969307',
     }, {
         id: 'fengshui',
         name: '家居风水',
-        mainPic: './images/fengshui.png',
+        mainPic: 'https://res1.bnq.com.cn/92d2dc05-df85-4cb6-8dba-d7c605a72cfc?t=1586255992741',
     }, {
         id: 'pinpai',
         name: '品牌展馆',
