@@ -75,7 +75,7 @@
         <view class="hot-list">
             <view wx:for="{{hotSkuList}}" data-brand="{{detailData.sapSkuNoFlag}}" bindtap="bindViewTap" wx:for-item="detailData"  class="hot-item">
                 <view class="image-div">
-                    <image wx:if="{{detailData.listimage}}" src="{{detailData.listimage}}" />
+                    <image wx:if="{{detailData.listImg}}" src="{{detailData.listImg}}" />
                 </view>
                 <view class="hot-content">
                         <view class="name">{{detailData.itemName}}</view>

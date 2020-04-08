@@ -29,7 +29,7 @@ Page({
         const cityName = app.globalData.cityName || '上海';
         this.initCityShopList(cityName);
         cityListData.forEach((ele,index) => {
-            if(ele === cityName){
+            if(cityName.indexOf(ele) > -1){
                 this.setData({
                     targetCity: index
                 })

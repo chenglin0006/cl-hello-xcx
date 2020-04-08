@@ -65,31 +65,60 @@ Page({
   },
 
   bindCityChange: function(e) {
-      let {cityEnum} = this.data;
+    let {cityEnum} = this.data;
     this.setData({
         targetCity: e.detail.value,
-        showLoading: true
+        showLoading: true,
+        cityName:cityEnum[e.detail.value],
     })
-    this.initData(cityEnum[e.detail.value]);
 },
 
   onShow: function () {
-      let {cityEnum,cityName} = this.data;
     locationUtil.getUserLocation((res)=>{
       this.setData({
         latitude:res.latitude,
         longitude:res.longitude,
       })
+      this.getCurrentCity(res.latitude,res.longitude);
     })
-    cityEnum.forEach((ele, index) => {
-        if(ele === cityName){
-            this.setData({
-                targetCity:index,
+    this.getTotalNumber();
+  },
+
+  onLoad: function () {
+    app.watch(this, {
+        cityName:  (newVal) => {
+            let {cityEnum} = this.data;
+            let targetCity = null;
+            cityEnum.forEach((ele,index) => {
+                if(newVal.indexOf(ele)>-1){
+                    targetCity = index;
+                }
             })
+            this.setData({
+                targetCity:targetCity,
+            })
+            this.initData(newVal);
         }
     })
-    this.initData(cityName);
-    this.getTotalNumber();
+  },
+
+  getCurrentCity: function(latitude,longitude){
+    let _this = this;
+    baserequest.ztRequest({
+      type:'get',
+      param: {
+        latitude,
+        longitude
+      },
+      url: '/bnq_owner/api/area/get-loc-and-cities.do'
+    }, (result) => {
+        _this.setData({
+            cityName:result.locCityName,
+        })
+    }, (code) => {
+      console.log(code)
+      isFirstInit = true
+      }, false, true)
   },
 
   initData: function(cityName){
