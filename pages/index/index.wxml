@@ -10,12 +10,10 @@
       <image src='https://res1.bnq.com.cn/4370a5a3-5098-4ad1-81bc-c3bf83443fe7?t=1586256405520'></image>
   </view>
   <view class="join-div" id="proMain">
-    <navigator url="/pages/signUp/index" redirect hover-class="class">
-        <view class="go-btn">
+    <view class="go-btn" bindtap="toSignUp">
         <text>立即报名</text>
             <image src="https://res1.bnq.com.cn/4dc5c30d-374d-450d-b51f-1274f74da3b8?t=1583939767697"></image>
-        </view>
-    </navigator>
+    </view>
     <view class="number-div">
         <view class="number-desc">已浏览人数</view>
         <view class="number">{{totalNum1}}人</view>

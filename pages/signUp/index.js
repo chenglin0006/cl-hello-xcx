@@ -102,13 +102,17 @@ Page({
                 duration: 1000
             });
             setTimeout(() => {
-                wx.navigateBack();
+                wx.navigateBack({
+                    delta: 1
+                });
             },1000)
         }, (code) => {
             console.log(code)
             if(code === 6) {
                 setTimeout(() => {
-                    wx.navigateBack();
+                    wx.navigateBack({
+                        delta: 1
+                    });
                 },1000)
             }
         }, true, true)

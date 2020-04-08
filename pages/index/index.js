@@ -58,6 +58,12 @@ Page({
     }) 
   },
 
+  toSignUp: function(event) {
+    wx.navigateTo({
+      url: '../signUp/index'
+    }) 
+  },
+
   bindCityChange: function(e) {
       let {cityEnum} = this.data;
     this.setData({
