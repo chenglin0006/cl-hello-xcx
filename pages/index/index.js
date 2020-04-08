@@ -74,17 +74,17 @@ Page({
 },
 
   onShow: function () {
-    locationUtil.getUserLocation((res)=>{
-      this.setData({
-        latitude:res.latitude,
-        longitude:res.longitude,
-      })
-      this.getCurrentCity(res.latitude,res.longitude);
-    })
     this.getTotalNumber();
   },
 
   onLoad: function () {
+    locationUtil.getUserLocation((res)=>{
+        this.setData({
+          latitude:res.latitude,
+          longitude:res.longitude,
+        })
+        this.getCurrentCity(res.latitude,res.longitude);
+    })
     app.watch(this, {
         cityName:  (newVal) => {
             let {cityEnum} = this.data;
