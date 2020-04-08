@@ -1,24 +1,32 @@
 <!--index.wxml-->
 <view class="container index-page">
+<picker bindchange="bindCityChange" value="{{targetCity}}" range="{{cityEnum}}">
+    <view class="choose-city">
+        <text align="middle">{{cityEnum[targetCity]}}</text><image src="./images/down-arrow.png"></image>
+    </view>
+</picker>
+
   <view class="head-div">
       <image src='https://res1.bnq.com.cn/4370a5a3-5098-4ad1-81bc-c3bf83443fe7?t=1586256405520'></image>
   </view>
   <view class="join-div" id="proMain">
-    <view class="go-btn">
-    <text>立即报名</text>
-        <image src="https://res1.bnq.com.cn/4dc5c30d-374d-450d-b51f-1274f74da3b8?t=1583939767697"></image>
-    </view>
+    <navigator url="/pages/signUp/index" redirect hover-class="class">
+        <view class="go-btn">
+        <text>立即报名</text>
+            <image src="https://res1.bnq.com.cn/4dc5c30d-374d-450d-b51f-1274f74da3b8?t=1583939767697"></image>
+        </view>
+    </navigator>
     <view class="number-div">
         <view class="number-desc">已浏览人数</view>
-        <view class="number">{{(totalNum*16.13+5000)}}人</view>
+        <view class="number">{{totalNum1}}人</view>
     </view>
     <view class="number-div">
         <view class="number-desc">已报名人次</view>
-        <view class="number">{{(totalNum*6.43+2000)}}人</view>
+        <view class="number">{{totalNum2}}人</view>
     </view>
     <view class="number-div">
         <view class="number-desc">已分享人次</view>
-        <view class="number">{{(totalNum*11.32+3000)}}人</view>
+        <view class="number">{{totalNum3}}人</view>
     </view>
   </view>
 
@@ -69,7 +77,7 @@
         <view class="hot-list">
             <view wx:for="{{hotSkuList}}" data-brand="{{detailData.sapSkuNoFlag}}" bindtap="bindViewTap" wx:for-item="detailData"  class="hot-item">
                 <view class="image-div">
-                    <image wx:if="{{detailData.listImg}}" src="{{detailData.listImg}}" />
+                    <image wx:if="{{detailData.listimage}}" src="{{detailData.listimage}}" />
                 </view>
                 <view class="hot-content">
                         <view class="name">{{detailData.itemName}}</view>
@@ -82,5 +90,9 @@
             </view>
         </view>
     </view>
+  </view>
+  <view wx:if="{{showLoading}}"  class="loading-change-div">
+        <image src="./images/loading-change.gif"></image>
+        <view class="text">切换城市会场中</view>
   </view>
 </view>

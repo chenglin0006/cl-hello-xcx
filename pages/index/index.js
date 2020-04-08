@@ -11,10 +11,16 @@ var Tools = require('../../utils/util');
 let hotJson = require('./json/hotJson').default;
 let shopCodeJson = require('./json/shopCode').default;
 let brandJson = require('./json/brandData').default;
+let cityListData = require('../index/json/cityJson').default;
 
 Page({
   data: {
-    totalNum: 1,
+    totalNum1:0,
+    totalNum2:0,
+    totalNum3:0,
+    cityEnum:cityListData,
+    targetCity:'',
+    showLoading:false,
     brandList: [],
     hotSkuList: [],
     tagList:[{
@@ -40,7 +46,7 @@ Page({
         id: 'baopin',
         name: '爆品秒杀',
     }],
-    cityName:'武汉',
+    cityName:'上海',
     latitude: 23.099994,
     longitude: 113.324520,
   },
@@ -51,20 +57,37 @@ Page({
       url: '../signUp/index?sapSkuNo='+sapSkuNoFlag
     }) 
   },
-  onLoad: function () {
-    // this.getLocation();
+
+  bindCityChange: function(e) {
+      let {cityEnum} = this.data;
+    this.setData({
+        targetCity: e.detail.value,
+        showLoading: true
+    })
+    this.initData(cityEnum[e.detail.value]);
+},
+
+  onShow: function () {
+      let {cityEnum,cityName} = this.data;
     locationUtil.getUserLocation((res)=>{
       this.setData({
         latitude:res.latitude,
         longitude:res.longitude,
       })
     })
-    this.initData();
+    cityEnum.forEach((ele, index) => {
+        if(ele === cityName){
+            this.setData({
+                targetCity:index,
+            })
+        }
+    })
+    this.initData(cityName);
     this.getTotalNumber();
   },
 
-  initData: function(e){
-    let cityName  = this.data.cityName;
+  initData: function(cityName){
+    app.globalData.cityName = cityName;
     let skuListStr = this.initJsonData(cityName);
     let shopCode = '';
     let shopCodeList = this.initCityJson();
@@ -136,11 +159,15 @@ Page({
           })
       })
       _this.setData({
-        hotSkuList:data
+        hotSkuList:data,
+        showLoading:false
       })
     }, (code) => {
       console.log(code)
       isFirstInit = true
+      _this.setData({
+        showLoading:false
+      })
       }, false, true)
   },
 
@@ -235,8 +262,12 @@ Page({
       param: null,
       url: '/dcmall-api-server/app/appExpoInterest/countOrderByWay/1242'
     }, (result) => {
-      
-
+        let totalNum = result.data;
+        this.setData({
+            totalNum1:(totalNum*16.13+5000).toFixed(),
+            totalNum2:(totalNum*6.43+2000).toFixed(),
+            totalNum3:(totalNum*11.32+3000).toFixed(),
+        })
     }, (code) => {
       console.log(code)
       isFirstInit = true

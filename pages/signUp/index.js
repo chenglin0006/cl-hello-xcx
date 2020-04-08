@@ -16,7 +16,7 @@ let cityShopData = require('../index/json/cityShop').default;
 Page({
     data: {
         test:123123,
-        targetCity: 0,
+        targetCity: null,
         targetShop: null,
         cityName:'上海',
         cityEnum:cityListData,
@@ -25,9 +25,9 @@ Page({
         telephone:''
     },
     onLoad: function (options) {
-        console.log(options,'------');
-        const {cityName} = this.data;
-        this.initCityShopList(this.data.cityName);
+        console.log(options, app.globalData.cityName, '------');
+        const cityName = app.globalData.cityName || '上海';
+        this.initCityShopList(cityName);
         cityListData.forEach((ele,index) => {
             if(ele === cityName){
                 this.setData({
@@ -85,12 +85,33 @@ Page({
             phone: e.detail.value.telephone,
             couponCode: md5.hex_md5(e.detail.value.telephone).toString().slice(3, 18),
             targetId: -1,
-            name: e.detail.value.username,
+            name: '测试' || e.detail.value.username,
             type: 3,
             shopName: shopList[targetShop].name,
             deviceCode: "h5",
+            sourceUrl:this.route
         };
-        console.log(params,'-----');
+        baserequest.jbhRequest({
+        type:'post',
+        param: params,
+        url: '/dcmall-api-server/app/appExpoInterest/create'
+        }, (result) => {
+            wx.showToast({
+                title: '报名成功',
+                icon: 'none',
+                duration: 1000
+            });
+            setTimeout(() => {
+                wx.navigateBack();
+            },1000)
+        }, (code) => {
+            console.log(code)
+            if(code === 6) {
+                setTimeout(() => {
+                    wx.navigateBack();
+                },1000)
+            }
+        }, true, true)
     },
     bindRegionChange: function(){
 

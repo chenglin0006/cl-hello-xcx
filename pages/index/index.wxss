@@ -809,3 +809,50 @@ display:-webkit-box;
   letter-spacing: 0;
   text-align: center;
 }
+
+.choose-city{
+  position: absolute;
+  left: 24rpx;
+  top: 26rpx;
+  width:130rpx;
+  height: 45rpx;
+  line-height: 45rpx;
+  opacity: 0.8;
+  background: #FFFFFF;
+  border-radius: 22.5rpx;
+  border-radius: 22.5rpx;
+  text-align: center;
+  font-family: PingFangSC-Medium;
+  font-size: 28rpx;
+  color: #333333;
+  letter-spacing: 0;
+  z-index: 11;
+}
+
+.choose-city image{
+  width:14rpx;
+  height: 10rpx;
+  margin-left: 13rpx;
+  position: relative;
+  top: -2rpx;
+}
+
+.loading-change-div{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+    z-index: 10;
+    background:rgba(0,0,0,0.6);
+}
+.loading-change-div image{
+    width: 250rpx;
+    height: 140rpx;
+    margin-top: 220rpx;
+}
+.loading-change-div .text{
+    color:#ffffff;
+    font-size:32rpx;
+}
