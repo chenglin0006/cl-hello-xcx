@@ -26,7 +26,7 @@ Page({
     },
     onLoad: function (options) {
         console.log(options, app.globalData.cityName, '------');
-        const cityName = app.globalData.cityName || '上海';
+        const cityName = app.globalData.cityName;
         this.initCityShopList(cityName);
         cityListData.forEach((ele,index) => {
             if(cityName.indexOf(ele) > -1){
@@ -87,7 +87,7 @@ Page({
             targetId: -1,
             name: '测试' || e.detail.value.username,
             type: 3,
-            shopName: shopList[targetShop].name,
+            shopName: targetShop&&shopList[targetShop]&&shopList[targetShop].name || '',
             deviceCode: "h5",
             sourceUrl:this.route
         };
