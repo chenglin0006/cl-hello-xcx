@@ -78,12 +78,13 @@ Page({
   },
 
   onLoad: function () {
+      let _this = this;
     locationUtil.getUserLocation((res)=>{
         this.setData({
           latitude:res.latitude,
           longitude:res.longitude,
         })
-        this.getCurrentCity(res.latitude,res.longitude);
+        _this.getCurrentCity(res.latitude,res.longitude);
     })
     app.watch(this, {
         cityName:  (newVal) => {
