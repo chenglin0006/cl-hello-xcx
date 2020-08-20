@@ -1,5 +1,13 @@
 <!--index.wxml-->
 <view class="container index-page">
+    <view class="topSearch" bindtap="searchTab">
+        <icon class="topSearchIcon" size='16' type='search'></icon>
+        <input class="topSearchCont" confirm-type="search" type="text" disabled='true'
+          placeholder="{{searchPlaceHolder}}" value='{{searchValue}}' />
+        <view class="topSearchFail" wx:if="{{searchValue.length > 0}}" bindtap="wxSearchCancel">
+          <icon size='16' type='clear'></icon>
+        </view>
+    </view>
 <picker bindchange="bindCityChange" value="{{targetCity}}" range="{{cityEnum}}">
     <view class="choose-city">
         <text align="middle">{{cityEnum[targetCity]}}</text><image src="./images/down-arrow.png"></image>

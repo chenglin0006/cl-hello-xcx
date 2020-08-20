@@ -5,7 +5,8 @@
     "pages/logs/logs",
     "pages/hello/index",
     "pages/outLink/outLink",
-    "pages/own/index"
+    "pages/own/index",
+    "pages/cloudShelf/search/search"
   ],
   "window": {
     "backgroundTextStyle": "light",

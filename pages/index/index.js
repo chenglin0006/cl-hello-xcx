@@ -23,6 +23,8 @@ Page({
     showLoading:false,
     brandList: [],
     hotSkuList: [],
+    searchValue: '',//搜索关键词
+    searchPlaceHolder: '',
     tagList:[{
         id: 'jiazhuang',
         name: '家装全案设计',
@@ -57,6 +59,16 @@ Page({
       url: '../signUp/index?sapSkuNo='+sapSkuNoFlag
     }) 
   },
+
+    searchTab: function() {
+        wx.navigateTo({
+            url: '/pages/cloudShelf/search/search'
+        })
+    },
+
+    wxSearchCancel: function() {
+
+    },
 
   toSignUp: function(event) {
     wx.navigateTo({

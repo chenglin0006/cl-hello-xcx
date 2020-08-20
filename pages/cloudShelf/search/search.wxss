@@ -1,0 +1,375 @@
+/* pages/cloudShelf/search/search.wxss */
+/* page{
+    height: 100%;
+    background-color: #F7F7F7;
+}
+.category{
+    width: 100%;
+}
+.topView{
+    width: 100%;
+    height: 60rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 20rpx 0;
+    border-bottom:2px #D8D8D8 solid;
+    background-color: #fff;
+    position: fixed;
+    top:0;
+    left: 0;
+    z-index: 999;
+}
+.topViewPlaceholder{
+    width: 100%;
+    height: 100rpx;
+}
+.topSearch{
+    width: 560rpx;
+    height: 60rpx;
+    position: relative;
+    background-color: #F1F1F1;
+    border-radius: 30rpx;
+    margin-left: 30rpx;
+}
+.topSearchIcon{
+    width: 42rpx;
+    height: 42rpx;
+    position: absolute;
+    left: 16rpx;
+    top:16rpx;
+    z-index: 1;
+}
+.topSearchCont{
+    width: 560rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    padding: 0 70rpx;
+    font-size: 28rpx;
+    display: flex;
+    box-sizing: border-box;
+}
+.topSearchFail{
+    width: 60rpx;
+    height: 60rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    top:0;
+    z-index: 1;
+}
+.topSearchRight{
+    width: 180rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    align-items: center;
+}
+.topSearchSm{
+    width: 44rpx;
+    height: 43rpx;
+    display: none;
+}
+.topSearchBtn{
+    width: 110rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    background-color: #FA7B00;
+    font-size: 28rpx;
+    color:#fff;
+    text-align: center;
+    padding:0;
+}
+.topSearchClose{
+    font-size: 28rpx;
+    color:#999;
+    display: none;
+}
+
+.searchList{
+    width: 100%;
+    background-color: #fff;
+}
+.searchListTit{
+    height: 90rpx;
+    line-height: 90rpx;
+    padding: 0 30rpx;
+    border-bottom: 1rpx #eee solid;
+    font-size: 30rpx;
+}
+.searchListTxt{
+    height: 90rpx;
+    line-height: 90rpx;
+    padding: 0 30rpx;
+    border: 0rpx #eee solid;
+    border-bottom: 1rpx #eee solid;
+    color:#999;
+    font-size: 28rpx;
+    background-color: transparent;
+    border-radius: 0px;
+    display: flex;
+    flex-direction:row;
+    justify-content: flex-start;
+}
+.searchClear{
+    height: 100rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F7F7F7;
+}
+.searchClear button{
+    border: 1px #979797 solid;
+    color:#979797;
+    width: 212rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 28rpx;
+    padding: 0;
+    background-color: #fff;
+    align-items: center;
+    justify-content: center;
+    display:flex;
+    text-align: middle;
+}
+.searchHistoryEmpty{
+    font-size: 32rpx;
+    text-align: center;
+    line-height: 100rpx;
+    color:#979797;
+} */
+
+
+
+
+
+
+
+
+.store-container {
+  position: relative;
+  background-color: #f5f5f5;
+}
+.topView{
+    width: 100%;
+    height: 60rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 20rpx 0;
+    border-bottom:2px #D8D8D8 solid;
+    background-color: #fff;
+    position: fixed;
+    top:0;
+    left: 0;
+    z-index: 999;
+}
+.topViewPlaceholder{
+    width: 100%;
+    height: 100rpx;
+}
+.topSearch{
+    width: 560rpx;
+    height: 60rpx;
+    position: relative;
+    background-color: #F1F1F1;
+    border-radius: 30rpx;
+    margin-left: 30rpx;
+}
+.topSearchIcon{
+    width: 42rpx;
+    height: 42rpx;
+    position: absolute;
+    left: 16rpx;
+    top:16rpx;
+    z-index: 1;
+}
+.topSearchCont{
+    width: 560rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    padding: 0 70rpx;
+    font-size: 28rpx;
+    display: flex;
+    box-sizing: border-box;
+}
+.topSearchFail{
+    width: 60rpx;
+    height: 60rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    top:0;
+    z-index: 1;
+}
+.topSearchRight{
+    width: 180rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    align-items: center;
+}
+.topSearchSm{
+    width: 44rpx;
+    height: 43rpx;
+    display: none;
+}
+.topSearchBtn{
+    width: 110rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    background-color: #FA7B00;
+    font-size: 28rpx;
+    color:#fff;
+    text-align: center;
+    padding:0;
+}
+.topSearchClose{
+    font-size: 28rpx;
+    color:#999;
+    display: none;
+}
+.topViewPlaceholder{
+    width: 100%;
+    height: 100rpx;
+}
+.history-record {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* justify-content: space-between; */
+}
+
+.history-item {
+  height: 56rpx;
+  background-color: #F5F5F5;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  padding-right: 28rpx;
+  padding-left: 28rpx;
+  color: #333333;
+  font-size: 24rpx;
+  margin-bottom: 30rpx;
+  margin-right: 23rpx;
+  border-radius: 36rpx;
+  margin-left: 0px;
+}
+
+.history-view {
+  width: 95%;
+  background-color: #ffffff;
+  border-radius: 12rpx;
+  margin-top: 20rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx
+}
+
+.history-titile-view {
+  width: 100%;
+  height: 70rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #888888;
+  font-size: 28rpx;
+}
+
+.delete-img {
+  width:56rpx;
+  height: 56rpx;
+}
+
+.search-view {
+  height: 356rpx;
+  width: 95%;
+  background-color: #ffffff;
+  border-radius: 12rpx;
+  margin-top: 20rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx
+}
+
+.search-text-view {
+  margin-top: 20rpx;
+  margin-bottom: 41rpx;
+}
+
+.search-text {
+  color: #888888;
+  font-size: 28rpx;
+}
+
+.circle0 {
+  width:32rpx;
+  height: 32rpx;
+  border-radius: 18rpx;
+  background-color: #FF6161;
+  color: #ffffff;
+  font-size: 24rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+.circle1 {
+  width:32rpx;
+  height: 32rpx;
+  border-radius: 18rpx;
+  background-color: #FFAE6D;
+  color: #ffffff;
+  font-size: 24rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+.circle2 {
+  width:32rpx;
+  height: 32rpx;
+  border-radius: 18rpx;
+  background-color: #FFD178;
+  color: #ffffff;
+  font-size: 24rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+
+.search-item {
+  height: 89rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom:1rpx solid #E5E5E5;
+   background-color: transparent;
+   border-radius: 0px;
+   padding: 0px;
+}
+
+.hot-search-text{
+  font-size: 28rpx;
+  color: #333333;
+  margin-left: 10rpx
+}
+
+.empty-view {
+  width: 100%;
+  height: 474rpx;
+  background-color: #F5F5F5
+}
+
+
+
+
+
+
+
+
+
+
+

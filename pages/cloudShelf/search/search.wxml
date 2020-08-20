@@ -1,0 +1,85 @@
+<!--pages/cloudShelf/search/search.wxml-->
+<!-- <view class="category">
+    <view class="topView">
+        <view class="topSearch">
+            <icon class="topSearchIcon" size='16' type='search'></icon>
+            <input class="topSearchCont"  value="{{wxSearchData.value}}"  confirm-type="search" type="text" placeholder="搜索商品、品牌"  bindinput="wxSearchInput" bindconfirm="wxSearchConfirm"  focus="true"/>
+            <view class="topSearchFail"  wx:if="{{wxSearchData.value.length > 0}}" bindtap="wxSearchClear">
+                <icon size='16' type='clear'></icon>  
+            </view>
+        </view>
+        <view class="topSearchRight" >
+            <button  data-key='search' bindtap="wxSearchConfirm" class="topSearchBtn">搜索</button>
+        </view>
+    </view>
+    <view class="topViewPlaceholder"></view>
+    <view class='searchList' wx:if="{{wxSearchData.his[0]}}"  style="display:{{wxSearchData.value.length>0 ? 'none':'block'}}">
+        <view class='searchListTit'>
+            <text>搜索历史</text>
+        </view>
+        <view class='searchListCont'>
+            <block wx:for="{{wxSearchData.his}}" wx:key="{{item}}">
+                <button class='searchListTxt'  bindtap="wxSearchKeyTap" data-key="{{item}}">
+                    <text>{{item}}</text>
+                </button>
+            </block>
+        </view>
+        <view class="searchClear">
+            <button bindtap="wxSearchDeleteAll">清除历史搜索</button>
+        </view>
+    </view>
+    <view wx:else>
+        <view class="searchHistoryEmpty">搜索历史为空</view>
+    </view>
+
+</view> -->
+
+
+
+
+<view class="store-container">
+  <!-- 搜索 -->
+  <view class="topView">
+        <view class="topSearch">
+            <icon class="topSearchIcon" size='16' type='search'></icon>
+            <input class="topSearchCont"  value="{{wxSearchData.value}}"  confirm-type="search" type="text" placeholder="{{searchPlaceHolder}}"  bindinput="wxSearchInput" bindconfirm="wxSearchConfirm"  focus="true"/>
+            <view class="topSearchFail"  wx:if="{{wxSearchData.value.length > 0}}" bindtap="wxSearchClear">
+                <icon size='16' type='clear'></icon>  
+            </view>
+        </view>
+        <view class="topSearchRight" >
+            <button  data-key='search' bindtap="wxSearchConfirm" class="topSearchBtn">搜索</button>
+        </view>
+    </view>
+    <view class="topViewPlaceholder"></view>
+  <!-- 搜索历史 -->
+  <view class="history-view"  wx:if="{{wxSearchData.his[0]}}">
+    <view class="history-titile-view">
+      <text>搜索历史</text>
+      <image class="delete-img" src='./images/delete.png' bindtap="wxSearchDeleteAll"/>
+    </view>
+    <view class="history-record">
+      <block wx:for="{{wxSearchData.his}}" wx:key="index" >
+        <button class="history-item" bindtap="wxSearchKeyTap" data-key="{{item}}">
+          <text>{{item}}</text>
+        </button>
+      </block>
+    </view>
+  </view>
+  <!-- 热门搜索 -->
+  <view class="search-view">
+    <view class="search-text-view">
+      <text class="search-text">热门搜索</text>
+    </view>
+    <block wx:for="{{searchList}}" wx:key="index">
+      <button class="search-item"  bindtap="wxSearchKeyTap" data-key="{{item.title}}">
+        <view class="{{index==0?'circle0':(index==1?'circle1':'circle2')}}">
+          <text>{{index+1}}</text>
+        </view>
+        <text class="hot-search-text">{{item.title}}</text>
+      </button>
+    </block>
+  </view>
+  <!-- 空白页 -->
+  <!-- <view class="empty-view"/> -->
+</view>
