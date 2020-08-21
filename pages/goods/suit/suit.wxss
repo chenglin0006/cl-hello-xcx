@@ -1,0 +1,100 @@
+/* pages/goods/suit/suit.wxss */
+.page{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.listGood{
+    font-size: 32rpx;
+    background-color: #fff;
+    margin-bottom: 100rpx;
+}
+.listGood navigator{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 0 30rpx;
+  border-bottom: #ededed solid 10px;
+}
+.item-view{
+  margin: 30rpx 0;
+  display: flex;
+  flex-direction: row;
+}
+.title-view{
+  height: 90rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: #ededed solid 1px;
+}
+.select-img{
+  width: 40rpx;
+    height: 40rpx;
+    margin-right: 20rpx;
+}
+.listGoodImg{
+    width: 200rpx;
+    height: 200rpx;
+    background-color: red;
+}
+.rightItem{
+    padding-left: 30rpx;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.name-text{
+  color: #333;
+  font-size: 32rpx;
+}
+.listGoodPrice{
+  color: #ff9000;
+  font-size: 40rpx;
+}
+
+.bottomView{
+  width: 100%;
+  height: 100rpx;
+  border-top:1px #D8D8D8 solid;
+  position: fixed;
+  bottom:0;
+  left: 0;
+  z-index: 99;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+}
+.bottomLeftView{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 50rpx;
+}
+.logo {
+  width: 40rpx;
+  height: 40rpx;
+}
+.bottomLeftText{
+  color: #333;
+  font-size: 22rpx;
+}
+.bottomRightView{
+  background: -webkit-linear-gradient(left,rgb(251, 123, 0), rgb(254, 177, 60));
+  background: -o-linear-gradient(right, rgb(251, 123, 0), rgb(254, 177, 60)); 
+  background: -moz-linear-gradient(right,rgb(251, 123, 0), rgb(254, 177, 60)); 
+  background: linear-gradient(to right, rgb(251, 123, 0), rgb(254, 177, 60));
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+.bottomBtnText{
+  color: #fff;
+  font-size: 32rpx;
+}
+

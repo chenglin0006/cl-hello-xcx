@@ -1,0 +1,11 @@
+<!--pages/index/servicePop/move-icon.wxml-->
+<movable-area class="custom-class" style="pointer-events: none;height: 100%;width: 100%;left:0px;top:0px;position:fixed;">
+    <movable-view wx:if="{{show}}" direction="all" x="{{moveViewX}}" y="{{moveViewY}}" animation="{{false}}" style="pointer-events: auto; width: 108rpx;height:108rpx;z-index: 999;align-items: center;justify-content: center;display: flex;" >
+        <button class='customerservice' open-type='contact' send-message-title='百安居商城客服'
+    session-from="{{sessionFrom}}">
+    <view>
+      <image src='../../../images/customerservice_icon.png' class='icon-img'></image>
+    </view>
+  </button>
+    </movable-view>
+  </movable-area>

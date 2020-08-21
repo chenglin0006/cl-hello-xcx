@@ -1,0 +1,62 @@
+<view class='tabPage'>
+  <view class='tabTitle'>
+    <view bindtap='bindTabTitle' wx:for="{{tabDatas}}" wx:key="index" data-item="{{item}}"data-index="{{index}}">
+      <text style="{{isShowTabSelect&&currentTabIndex==index?'color:#ff9000':''}}" id='{{index}}'>{{item.title}}</text>
+      <text wx:if="{{item.type !== 'noItem'}}" id='{{index}}' style="{{isShowTabSelect&&currTab==index?'border-bottom: 6px solid #ff9000;border-top:none':''}}" class="{{isShowTabSelect && currentTabIndex==index? 'arrow-up':'arrow-down'}}"></text>
+    </view>
+  </view>
+  <view class='title-tab' wx:if="{{isShowTabSelect}}">
+        <view wx:if="{{tabDatas[currentTabIndex].type == 'tag'}}"
+         wx:for="{{showTags}}"
+         wx:key="index"
+         bindtap='bindSelectTag' 
+         data-name="{{item.name}}" 
+         data-code="{{item.code}}" 
+         data-index='{{index}}' 
+         style="background-color:{{index == tagSelectedIndex?'#FA7B00':'#e4e4e4'}};color:{{index == tagSelectedIndex?'#ffffff':'#333'}}"
+         class="tagButton">
+          {{item.name}}
+        </view>
+
+        <view wx:if="{{tabDatas[currentTabIndex].type == 'category'}}"
+         data-name="{{item.name}}" 
+         data-code="{{item.code}}" 
+         data-index='{{index}}' 
+         class="categoryButton">
+          <view class='categoryLeft'>
+            <view wx:for="{{showTags}}" 
+              wx:key="index"
+              bindtap='bindLeftCategory' 
+              data-index='{{index}}'
+              style="background-color:{{index == categoryLeftIndex?'#ffffff':'#f5f5f5'}};color:{{index == categoryLeftIndex?'#FA7B00':'#333'}}">
+              {{item.name}}</view>
+          </view>
+          <view class='categoryRight' >
+            <view wx:for="{{showTags[categoryLeftIndex].subCategory}}" 
+              wx:key="index"
+              bindtap='bindSelectTag' 
+              data-name="{{item.name}}" 
+              data-code="{{item.code}}" 
+              data-index='{{index}}' >{{item.name}}
+            </view>
+          </view>
+        </view>
+
+        <view wx:if="{{tabDatas[currentTabIndex].type == 'row'}}" 
+        wx:for="{{showTags}}"
+        wx:key="index"
+        bindtap='bindSelectTag' 
+        data-name="{{item.name}}" 
+        data-code="{{item.code}}" 
+        data-index='{{index}}' 
+        class="rowButton">
+          <text style="color:{{index == rowSelectedIndex?'#FA7B00':'#333'}}">{{item.name}}</text>
+          <image wx:if="{{index == rowSelectedIndex}}" 
+          src='../../../../images/icon-choose-red.png'></image>
+        </view>
+      
+  </view>
+
+</view>
+  <view wx:if="{{isShowTabSelect && tabDatas[currentTabIndex].type !== 'noItem'}}" class='bgView'>
+  </view>

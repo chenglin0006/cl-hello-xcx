@@ -127,7 +127,6 @@ function wxSearchConfirm(e) {
 }
 
 function search(inputValue) {
-  debugger;
   if (inputValue && inputValue.length > 0) {
     // 添加历史记录
     wxSearchAddHisKey(inputValue);

@@ -1,0 +1,8 @@
+{
+    "navigationBarTitleText": "",
+    "usingComponents": {
+      "selectionTab": "../../goods/cell/selectionTab/selectionTab",
+      "top-filter": "/components/top-filter/top-filter",
+      "move-icon": "/pages/index/move-icon/move-icon"
+    }
+}

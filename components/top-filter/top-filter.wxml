@@ -1,0 +1,50 @@
+<!--component/top-filter/top-filter.wxml-->
+<view class="topFilter{{contentVisible ? '' : ' topFilterBorderBottom'}}">
+  <view class="topFilterHeader">
+    <view class="topFilterColumn{{brandBarActive ? ' ActiveColumn' : ''}}" bindtap="handleToggleBrand">
+      <text class="topFilterColumnTitle">品牌</text>
+      <image wx:if="{{brandBarActive}}" class="topFilterIconArrow{{(brandBarActive && !contentVisible) ? ' topFilterIconArrowReverse' : ''}}" src="../../images/icon-arrow-active.png" />
+      <image wx:else class="topFilterIconArrow" src="../../images/icon-arrow-inactive.png" />
+    </view>
+    <view class="topFilterColumn{{sortBarActive ? ' ActiveColumn' : ''}}" bindtap="handleToggleSort">
+      <text class="topFilterColumnTitle">排序</text>
+      <image wx:if="{{sortBarActive}}" class="topFilterIconArrow{{(sortBarActive && !contentVisible) ? ' topFilterIconArrowReverse' : ''}}" src="../../images/icon-arrow-active.png" />
+      <image wx:else class="topFilterIconArrow" src="../../images/icon-arrow-inactive.png" />
+    </view>
+  </view>
+  <view wx:if="{{contentVisible}}" class="topFilterContainer">
+    <view class="topFilterMask" catchtouchmove="true" bindtap="handleClose"></view>
+    <view wx:if="{{type === 'brand'}}" class="topFilterWrapper">
+      <view class="topFilterBrandContent">
+        <view 
+          wx:for="{{brandList}}" 
+          wx:key="index" 
+          class="topFilterBrandItem" 
+          data-item="{{item}}"
+          bindtap="handleSelectBrand"
+        >
+          <text class="topFilterBrandName{{item.selected ? ' topFilterActiveName' : ''}}">{{item.brandName}}</text>
+          <image wx:if="{{item.selected}}" class="topFilterIconSelected" src="../../images/icon-choose-red.png"></image>
+        </view>
+      </view>
+      <view class="topFilterBrandFooter">
+        <button class="topFilterBrandBtn" bindtap="handleReset">重置</button>
+        <button class="topFilterBrandBtn topFilterBrandConfirmBtn" bindtap="handleConfirm">确认</button>
+      </view>
+    </view>
+    <view wx:if="{{type === 'sort'}}" class="topFilterWrapper">
+      <view class="topFilterSortContent">
+        <view 
+          wx:for="{{sortList}}" 
+          wx:key="index" 
+          class="topFilterSortItem"
+          data-item="{{item}}"
+          bindtap="handleSelectSort"
+        >
+          <text class="topFilterSortName{{item.selected ? ' topFilterActiveName' : ''}}">{{item.sortName}}</text>
+          <image wx:if="{{item.selected}}" class="topFilterIconSelected" src="../../images/icon-choose-red.png"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

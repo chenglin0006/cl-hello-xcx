@@ -1,0 +1,29 @@
+<!--pages/goods/suit/suit.wxml-->
+<view class='page'>
+    <view class="listGood" >
+    <block wx:for="{{goodsList}}" wx:key="index" >
+      <navigator url="../../goods/detail/detail?itemId={{item.id}}" hover-class="none">
+          <view class='title-view'>
+            <image class='select-img' src="{{!item.isSelected?'../../shoppingcard/image/icon_selected.png':'../../shoppingcard/image/icon_unselected.png'}}"></image>
+            <text class='name-text'>优惠套装{{item.index}}</text>
+          </view>
+          <view class='item-view'>
+            <image src="{{item.listImg}}" class="listGoodImg"></image>
+            <view class='rightItem'>
+                <text class='name-text'>{{item.itemName}}</text>
+                <text class="listGoodPrice" wx:if="{{!!item.salePriceStr}}">￥{{item.salePriceStr}}</text>
+            </view>
+          </view>
+      </navigator>
+      </block>
+    </view>
+  <view class='bottomView'>
+    <view class='bottomLeftView'>
+      <image class='logo' src="../../../images/shopcart.png"></image>
+      <text class='bottomLeftText'>购物车</text>
+    </view>
+    <view class='bottomRightView'>
+      <text class='bottomBtnText'>加入购物车</text>
+    </view>
+  </view>
+ </view>

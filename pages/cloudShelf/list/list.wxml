@@ -1,0 +1,76 @@
+<!--pages/cloudShelf/list/list.wxml-->
+<view class="category">
+  <view class="topView">
+    <!-- 搜索栏 -->
+    <view class="topSearch">
+      <view class="topSearchLeft" bindtap="wxSearchTab">
+        <icon class="topSearchIcon" size='16' type='search'></icon>
+        <input class="topSearchCont" confirm-type="search" type="text" disabled='true' placeholder="搜索商品、品牌"
+          value='{{searchValue}}' />
+        <view class="topSearchFail" wx:if="{{searchValue.length > 0}}" bindtap="wxSearchCancel">
+          <icon size='16' type='clear'></icon>
+        </view>
+      </view>
+      <view class="topSearchRight">
+        <button class="topSearchBtn" wx:if="{{searchValue.length == 0}}" bindtap="wxSearchTab">搜索</button>
+        <text class="topSearchClose" wx:if="{{searchValue.length > 0}}" bindtap="wxSearchCancel">取消</text>
+      </view>
+    </view>
+
+    <!-- 筛选 -->
+    <top-filter brandList="{{brandList}}" bindbrands="handleSelectedBrand" bindsort="handleSelectedSort" />
+  </view>
+  <view class="topViewPlaceholder"></view>
+  
+  <!-- 品牌 -->
+  <view wx:if="{{!!brandName}}" class="brand-bg-view" style="background-size: cover" bindtap="goBrandActivityDetial">
+    <image src='../../index/images/brandBg.png' class='brand_backgroud' />
+    <view class="brand-item-view">
+      <view class="brand-icon-view">
+        <image class="brand-icon-image" src='{{brandIcon}}' />
+        <text class="brand-name">{{brandName}}</text>
+      </view>
+      <text class="brand-content">{{brandActive}}</text>
+      <view class='brand-right'></view>
+    </view>
+  </view>
+
+  <!-- 列表 -->
+  <view class="list">
+    <view class="listMain" wx:if="{{goodsList.length>0}}">
+      <view class="listGood" wx:for="{{goodsList}}" wx:key="index">
+        <navigator url="../../goods/detail/detail?itemId={{item.id}}&skuId={{!!item.listSku?item.listSku:''}}"
+          hover-class="none">
+          <view class="listGoodImg">
+            <image src="{{item.listImg}}"></image>
+          </view>
+          <view class="listGoodTit"><text>{{item.itemName}}</text></view>
+          <view class="listTagRow">
+            <text wx:for="{{item.tags}}" wx:for-item='value' wx:key="index" class="listGoodMark">{{value}}</text>
+            <text wx:if="{{item.isEnergySubsidy}}" class="listGoodMark">节能补贴</text>
+          </view>
+          <view class="listGoodPrice">
+            <text wx:if="{{!!item.customerPriceStr}}" class="listGoodMemberPrice">{{item.customerPriceStr}}</text>
+            <view wx:if="{{!!item.customerPriceStr}}" class="listGoodMemberTag">会员价</view>
+            <!--如果没有会员价就显示会员价的样式-->
+            <text wx:if="{{!!item.customerPriceStr}}" class="listGoodOriginalPrice">{{item.salePriceStr}}</text>
+            <text wx:else class="listGoodOriginalPriceOnly">{{item.salePriceStr}}</text>
+          </view>
+        </navigator>
+      </view>
+      <view wx:if="{{!toShow}}" class="noMore">
+        <text>加载更多</text>
+      </view>
+      <view wx:if="{{toShow}}" class="noMore">
+        <text>-- 没有更多了 --</text>
+      </view>
+    </view>
+    <view wx:if="{{isLoaded&&goodsList.length==0}}" class="noMore">
+      <text>-- 没有搜索到数据 --</text>
+    </view>
+  </view>
+
+  <!-- 客服 -->
+  <move-icon show="{{true}}" moveViewX="{{moveViewLeft}}" moveViewY="{{moveViewTop}}" sessionFrom="7moor|{{userName}}|{{headPicUrl}}">
+    </move-icon>
+</view>

@@ -1,0 +1,41 @@
+<!--components/base-modal/base-modal.wxml-->
+<view wx:if="{{visible}}" class="base-modal">
+  <view class="base-modal-mask" catchtouchmove="catchCatchMove"></view>
+  <view class="base-modal-wrapper">
+    <!-- header -->
+    <view class="base-modal-header">
+      <text wx:if="{{showTitle}}" class="base-modal-title">{{title}}</text>
+      <slot wx:else name="title" />
+      <image 
+        wx:if="{{showCloseIcon}}"
+        src="./images/icon_close.png" 
+        class="base-modal-icon-close" 
+        bindtap="handleCancel"
+      />
+    </view>
+
+    <!-- content -->
+    <view class="base-modal-content">
+      <slot />
+    </view>
+
+    <!-- footer -->
+    <view wx:if="{{showFooter}}" class="base-modal-footer">
+      <button 
+        wx:if="{{showCancelBtn}}"
+        class="base-modal-btn base-modal-cancel" 
+        bindtap="handleCancel"
+      >
+        {{cancelText}}
+      </button>
+      <button 
+       wx:if="{{showConfirmBtn}}"
+        class="base-modal-btn base-modal-confirm"
+        bindtap="handleConfirm"
+      >
+        {{confirmText}}
+      </button>
+    </view>
+    <slot name="footer" />
+  </view>
+</view>

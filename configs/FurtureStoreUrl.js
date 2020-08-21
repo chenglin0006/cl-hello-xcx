@@ -6,11 +6,60 @@ var FurtureStoreUrl = {
   /**
    * 获取省市区
    */
-  getAreas(){
+  getAreas() {
     return {
       url: '/area/allAreas',
       type: 'GET',
       param: {}
+    }
+  },
+  /**
+   * 获取所有省份
+   */
+  getAreasDistrictProvinces() {
+    return {
+      url: '/cutomer/area/district/provinces',
+      type: 'GET',
+      param: {}
+    }
+  },
+  /**
+   * 获取所有市
+   * @param provinceId 省id
+   */
+  getAreasDistrictCitys(provinceId) {
+    return {
+      url: '/cutomer/area/district/citys',
+      type: 'GET',
+      param: {
+        provinceId: provinceId
+      }
+    }
+  },
+  /**
+   * 获取所有区
+   * @param cityId 市的id
+   */
+  getAreasDistrictDistricts(cityId) {
+    return {
+      url: '/cutomer/area/district/districts',
+      type: 'GET',
+      param: {
+        cityId: cityId
+      }
+    }
+  },
+  /**
+   * 获取所有街道
+   * @param districtId 区的id
+   */
+  getAreasStreetStreets(districtId) {
+    return {
+      url: '/cutomer/area/street/streets',
+      type: 'GET',
+      param: {
+        districtId: districtId
+      }
     }
   },
   /***
@@ -30,61 +79,36 @@ var FurtureStoreUrl = {
    * @param shopId 店铺ID
    * @param keyword  搜索关键字
    * @param isDiscount 是否满减 1是，0否
-   * @param brandIds 品牌id
    * @param activity 活动id
+   * @param brandIds 品牌id
+   * @param sort 排序
    */
 
-  getGoodsItems(saleCategoryId, shopCode, keyword, curPage, pageSize, isDiscount,activity,brandIds) {
-
-    if (!!keyword || saleCategoryId === 0) {
-      let param = {
-        shopCode: shopCode,
-        keyword: keyword,
-        curPage: curPage,
-        pageSize: pageSize,
-        activity: activity
-      }
-      if (isDiscount === 1) {
-        param.isDiscount = 1
-      }
-      if (!!brandIds){
-        param.brandIds = brandIds
-      }
-      return {
-        url: '/items/list',
-        type: 'GET',
-        param: param
-
-      }
-    } else {
-      let param = {
-        saleCategoryId: saleCategoryId,
-        shopCode: shopCode,
-        keyword: keyword,
-        curPage: curPage,
-        pageSize: pageSize,
-        activity: activity
-      }
-      if (isDiscount === 1) {
-        param.isDiscount = 1
-      }
-      if (!!brandIds) {
-        param.brandIds = brandIds
-      }
-      return {
-        url: '/items/list',
-        type: 'GET',
-        param: param
-
+  getGoodsItems(params) {
+    const param = {};
+    for (const key in params) {
+      if (params[key] !== undefined) {
+        param[key] = params[key];
       }
     }
+    if (params.isDiscount === 1) {
+      param.isDiscount = 1;
+    }
+    if (params.keyword || params.saleCategoryId === 0) {
+      delete param.saleCategoryId;
+    }
 
+    return {
+      url: '/items/searchList',
+      type: 'GET',
+      param: param
+    }
   },
   /***
    * 获取商品详情
    * @param itemId 商品ID
    */
-  getGoodsDetail(itemId, skuId='') {
+  getGoodsDetail(itemId, skuId = '') {
     return {
       url: '/item/new/detail',
       type: 'GET',
@@ -132,15 +156,7 @@ var FurtureStoreUrl = {
       url: '/shop/queryFuturnShop',
       type: 'GET',
       param: {
-        "shopId": "847",
-        "shopCode": "1004",
-        "itemId": 1053,
-        "itemCode": "209",
-        "skuId": 15917,
-        "skuCode": "11086",
-        "sapSku": "456789",
-        "quantity": "5",
-        "note": "备注"
+
       }
     }
   },
@@ -171,12 +187,12 @@ var FurtureStoreUrl = {
    * 加入购物车
    * @param productType 1:普通商品 2：议价商品 3：定制商品
    */
-  addItemToCart(unitCode,shopCode,shopId, itemId, itemCode, skuId, skuCode, sapSku, quantity, note, productType='1', skuRelations) {
+  addItemToCart(unitCode, shopCode, shopId, itemId, itemCode, skuId, skuCode, sapSku, quantity, note, productType = '1', skuRelations) {
     return {
       url: '/cart/addItemToCart',
       type: 'POST',
       param: {
-        unitCode,shopCode,shopId, itemId, itemCode, skuId, skuCode, sapSku, quantity, note, productType,skuRelations
+        unitCode, shopCode, shopId, itemId, itemCode, skuId, skuCode, sapSku, quantity, note, productType, skuRelations
       }
 
     }
@@ -201,12 +217,12 @@ var FurtureStoreUrl = {
    * @returns {{url: string, type: string, param: {id: *}}}
    */
   deleteItemFormCart(ids) {
-    console.log('deleteItemFormCart',ids)
+    console.log('deleteItemFormCart', ids)
     return {
       url: '/cart/deleteItemFormCart',
       type: 'POST',
       param: {
-        cartItemIds:ids,
+        cartItemIds: ids,
       }
     }
   },
@@ -231,10 +247,10 @@ var FurtureStoreUrl = {
    * @param id
    * @returns {{url: string, type: string, param: {id: *}}}
    */
-  commitCart(shopCode, customerMobile, orderItemList, receiverDistrictCode, cartItemIds) {
+  commitCart(channelType, shopCode, customerMobile, orderItemList, receiverDistrictCode, cartItemIds, receiverAddressId) {
     return {
       // url: '/http-api/futureShop/promotionQuery.do',
-      url:'/order/orderSettle',
+      url: '/order/orderSettle',
       type: 'POST',
       param: {
         // shopCode,
@@ -242,11 +258,13 @@ var FurtureStoreUrl = {
         // customerMobile,
         // pay_fee,
         // articles: articles,
+        channelType,
         shopCode,
         customerMobile,
         orderItemList,
         receiverDistrictCode,
-        cartItemIds
+        cartItemIds,
+        receiverAddressId
       }
     }
   },
@@ -256,40 +274,42 @@ var FurtureStoreUrl = {
    * @param source 值'wc'：表示渠道来源是微信小程序
    * @returns {{url: string, type: string, param: {id: *}}}
    */
-  commitOrder(baseInfo, orderItemList, cartItemIds, couponCodeList) {
+  commitOrder(baseInfo, orderItemList, cartItemIds, couponCodeList, energySubsidy) {
     return {
       // url: '/http-api/futureShop/orderPosPay.do',
-      url:'/order/submit',
+      url: '/order/submit',
       type: 'POST',
       param: {
-        buyerRemark: baseInfo.buyerRemark,
-        // userId: baseInfo.userId,
-        customerId: baseInfo.customerId,
-        customerMobile: baseInfo.customerMobile,
-        shopCode: baseInfo.shopCode,
-        posNo: baseInfo.posNo,
-        cmFlag: baseInfo.cmFlag,
-        bizSubType: baseInfo.bizSubType,
-        terminalType: baseInfo.terminalType,
-        receiverAddressId: baseInfo.receiverAddressId,
-        estimatedDeliveryTime: baseInfo.estimatedDeliveryTime,
-        installTime: baseInfo.installTime,
-        paymentType: baseInfo.paymentType,
-        paymentSource: baseInfo.paymentSource,
-        paymentWay: baseInfo.paymentWay,
-        pointDeductionAmount: baseInfo.pointDeductionAmount,
-        paymentAccount: baseInfo.paymentAccount,
-        channelType: baseInfo.channelType,
+        // buyerRemark: baseInfo.buyerRemark,
+        // // userId: baseInfo.userId,
+        // customerId: baseInfo.customerId,
+        // customerMobile: baseInfo.customerMobile,
+        // shopCode: baseInfo.shopCode,
+        // posNo: baseInfo.posNo,
+        // cmFlag: baseInfo.cmFlag,
+        // bizSubType: baseInfo.bizSubType,
+        // terminalType: baseInfo.terminalType,
+        // receiverAddressId: baseInfo.receiverAddressId,
+        // estimatedDeliveryTime: baseInfo.estimatedDeliveryTime,
+        // installTime: baseInfo.installTime,
+        // paymentType: baseInfo.paymentType,
+        // paymentSource: baseInfo.paymentSource,
+        // paymentWay: baseInfo.paymentWay,
+        // pointDeductionAmount: baseInfo.pointDeductionAmount,
+        // paymentAccount: baseInfo.paymentAccount,
+        // channelType: baseInfo.channelType,
+        ...baseInfo,
         couponCodeList: couponCodeList,
         cartItemIds: cartItemIds,
-        orderItemList: orderItemList
+        orderItemList: orderItemList,
+        ...energySubsidy
       }
     }
   },
   /**
    * 统一下单
    */
-  doPay(data ) {
+  doPay(data) {
     return {
       url: '/payment/doPay',
       type: 'POST',
@@ -409,7 +429,7 @@ var FurtureStoreUrl = {
    * 待收货：4
    * 已收货：5
    */
-  getOrderList(phone, curPage, pageSize,state) {
+  getOrderList(phone, curPage, pageSize, state) {
     return {
       // url: '/http-api/futureShop/orderListQuery.do',
       url: '/channelOrder/orderList.do',
@@ -429,7 +449,7 @@ var FurtureStoreUrl = {
   getOrderDetail(orderCode) {
     return {
       // url: '/http-api/futureShop/getOrderDetail.do',
-      url:'/channelOrder/orderDetail.do',
+      url: '/channelOrder/orderDetail.do',
       type: 'GET',
       param: {
         // channelNo: channelNo,
@@ -438,17 +458,42 @@ var FurtureStoreUrl = {
       }
     }
   },
+
+  /****
+   * 获取新的订单数统计
+   */
+  getOrderStatusStatistics(customerMobile) {
+    return {
+      // url: '/http-api/futureShop/getOrderDetail.do',
+      url: '/channelOrder/orderStatusStatistics',
+      type: 'GET',
+      param: {
+        customerMobile
+      }
+    }
+  },
+
+  /****
+   * 获取订单预约时间
+   */
+  updateOrder(param) {
+    return {
+      url: '/channelOrder/updateOrder',
+      type: 'POST',
+      param: param
+    }
+  },
   /****
    * 订单中心，支付
    */
-  payOrderByAlipay(channelOrderNo,openId,payType) {
+  payOrderByAlipay(channelOrderNo, openId, payType) {
     return {
       url: '/http-api/futureShop/waitPayment.do',
       type: 'post',
       param: {
         channelOrderNo: channelOrderNo,
-        openId:openId,
-        payType:payType
+        openId: openId,
+        payType: payType
       }
     }
   },
@@ -471,7 +516,7 @@ var FurtureStoreUrl = {
   confirmReceipt(orderCode) {
     return {
       // url: '/http-api/futureShop/confirmReceipt.do',
-      url:'/channelOrder/confirmReceipt.do',
+      url: '/channelOrder/confirmReceipt.do',
       type: 'get',
       param: {
         // channelOrderNo: channelOrderNo,
@@ -489,6 +534,18 @@ var FurtureStoreUrl = {
       param: {
         // channelOrderNo: channelOrderNo,
         orderCode
+      }
+    }
+  },
+  /**
+     * 门店信息查询（新）
+     */
+  shopInfo(shopCode) {
+    return {
+      url: '/channelOrder/shopInfo',
+      type: 'GET',
+      param: {
+        shopCode
       }
     }
   },
@@ -525,7 +582,7 @@ var FurtureStoreUrl = {
   refundList(channelOrderId) {
     return {
       // url: '/http-api/futureShop/refundList.do',
-      url:'/refund/refundList.do',
+      url: '/refund/refundList.do',
       type: 'POST',
       param: {
         channelOrderId: channelOrderId,
@@ -541,7 +598,7 @@ var FurtureStoreUrl = {
   getRefundAmount(channelOrderItemId, refundNum, applyRefundType) {
     return {
       // url: '/http-api/futureShop/refund/getRefundAmount.do',
-      url:'/refund/getRefundAmount.do',
+      url: '/refund/getRefundAmount.do',
       type: 'POST',
       param: {
         channelOrderItemId,
@@ -564,11 +621,11 @@ var FurtureStoreUrl = {
   saveRefund(channelOrderItemId, refundType, applyRefundAmount, refundReason, refundNum, refundNote, commodityStatus, refundRequestId) {
     return {
       // url: '/http-api/futureShop/refund/saveRefund.do',
-      url:'/refund/saveRefund.do',
+      url: '/refund/saveRefund.do',
       type: 'POST',
       param: {
         channelOrderItemId,
-        applyRefundType:refundType,
+        applyRefundType: refundType,
         applyRefundAmount,
         applyRefundQuantity: refundNum,
         refundReason,
@@ -586,7 +643,7 @@ var FurtureStoreUrl = {
   refundDetail(channelOrderItemId) {
     return {
       // url: '/http-api/futureShop/refund/refundDetail.do',
-      url:'/refund/getRefundDetail.do',
+      url: '/refund/getRefundDetail.do',
       type: 'POST',
       param: {
         channelOrderItemId,
@@ -613,7 +670,7 @@ var FurtureStoreUrl = {
   getAddressList(shopCode, phone) {
     return {
       // url: '/cutomer/addess/list',
-      url:'/cutomer/addess/getAddress',
+      url: '/cutomer/addess/getAddress',
       type: 'get',
       param: {
         shopCode: shopCode,
@@ -631,7 +688,7 @@ var FurtureStoreUrl = {
   deleteAddress(id) {
     return {
       // url: '/retail-member/address//deleteAddress',
-      url:'/cutomer/addess/delete',
+      url: '/cutomer/addess/delete',
       type: 'GET',
       param: {
         id: id
@@ -668,7 +725,7 @@ var FurtureStoreUrl = {
       }
     }
   },
-  createAddress(addressInfo){
+  createAddress(addressInfo) {
     return {
       url: '/cutomer/addess/create',
       type: 'post',
@@ -723,15 +780,15 @@ var FurtureStoreUrl = {
    * @param terminalType，终端类型，微信商城-10
    * @returns 
    */
-  getAdScreenList(location,shopCode,terminalType,bizType,curPage, pageSize){
+  getAdScreenList(location, shopCode, terminalType, bizType, curPage, pageSize) {
     return {
       url: '/cms-service/adScreen/list.do',
       type: 'GET',
       param: {
-        location:location,
-        shopCode:shopCode,
-        terminalType:terminalType,
-        bizType:bizType,
+        location: location,
+        shopCode: shopCode,
+        terminalType: terminalType,
+        bizType: bizType,
         curPage: curPage,
         pageSize: pageSize
       }
@@ -743,14 +800,14 @@ var FurtureStoreUrl = {
    * @param terminalType，终端类型，微信商城-10
    * @returns 
    */
-  getHotProductList(shopCode,terminalType,bizType) {
+  getHotProductList(shopCode, terminalType, bizType) {
     return {
       url: '/cms-service/hotProduct/list.do',
       type: 'GET',
       param: {
-        shopCode:shopCode,
-        terminalType:terminalType,
-        bizType:bizType,
+        shopCode: shopCode,
+        terminalType: terminalType,
+        bizType: bizType,
       }
     }
   },
@@ -764,34 +821,31 @@ var FurtureStoreUrl = {
       url: '/cms-service/adScreen/detail.do',
       type: 'GET',
       param: {
-        id:id
+        id: id
       }
     }
   },
   /**
      * 查询物流列表
-     * @param channelOrderNo 渠道订单号
+     * @param orderCode 订单号
      */
-  dnDetail(channelOrderNo) {
+  logisticsList(orderCode) {
     return {
-      url: '/dnLogic/dnDetail',
+      url: '/logistics/logisticsList',
       type: 'get',
       param: {
-        channelOrderNo
+        channelOrderCode: orderCode,
       }
     }
   },
   /**
    * 查询物流进度
-   * @param dnId 交货单号
+   * @param  交货单号
    */
-  dnLogicDetail(dnId) {
+  logisticsDetail(id) {
     return {
-      url: '/dnLogic/dnLogicDetail',
+      url: '/logistics/h5Log/' + id,
       type: 'get',
-      param: {
-        dnId
-      }
     }
   },
   /**
@@ -807,24 +861,10 @@ var FurtureStoreUrl = {
       }
     }
   },
-
-  /**
-   * 家博会爆品列表
-   * @param terminalType 10 小程序，
-   */
-  jbhSkuCollection(shopCode, sapSkuCodes) {
-    return {
-      url: '/items/list',
-      type: 'get',
-      param: {
-        shopCode, sapSkuCodes,curPage:1,pageSize:sapSkuCodes.split(',').length
-      }
-    }
-  },
   /**
    * 活动分类
    */
-  activityCatgery(shopCode, activityId){
+  activityCatgery(shopCode, activityId) {
     return {
       url: '/activitycatgery',
       type: 'get',
@@ -850,7 +890,7 @@ var FurtureStoreUrl = {
    */
   getValidateRole() {
     return {
-      url:'/marketing-service/performance/validateRole.do',
+      url: '/marketing-service/performance/validateRole.do',
       type: 'GET',
     }
   },
@@ -859,20 +899,20 @@ var FurtureStoreUrl = {
    */
   getSummarize() {
     return {
-      url:'/marketing-service/performance/getSummarize.do',
+      url: '/marketing-service/performance/getSummarize.do',
       type: 'GET',
     }
   },
   /****
    * 获取人人营销业绩列表
    */
-  getRankingList(curPage,pageSize,areaScopeType,rankType) {
+  getRankingList(curPage, pageSize, areaScopeType, rankType) {
     return {
       url: '/marketing-service/performance/getRankingList.do',
       type: 'GET',
       param: {
-        areaScopeType:areaScopeType,
-        rankType:rankType,
+        areaScopeType: areaScopeType,
+        rankType: rankType,
         curPage: curPage,
         pageSize: pageSize
       }
@@ -885,7 +925,7 @@ var FurtureStoreUrl = {
     return {
       url: '/invoice/print/queryOnlineOrderList.do',
       type: 'GET',
-      param:{
+      param: {
         orderNo
       }
     }
@@ -900,13 +940,13 @@ var FurtureStoreUrl = {
       param: {
         shopNo: info.shopNo,
         taxCode: info.taxCode,
-        name:info.name,
-        account:info.account,
-        address:info.address,
-        bank:info.bank,
-        email:info.email,
-        mobile:info.mobile,
-        tel:info.tel,
+        name: info.name,
+        account: info.account,
+        address: info.address,
+        bank: info.bank,
+        email: info.email,
+        mobile: info.mobile,
+        tel: info.tel,
         isHomeDecoration: info.isHomeDecoration,
         customerCardCode: info.customerCardCode,
         orderTime: info.orderTime,
@@ -998,14 +1038,15 @@ var FurtureStoreUrl = {
   /*
    * 根据商品信息获取优惠券
    */
-  findCouponInfoByOrderProduct(mobile, shopCode,productInfoDtos) {
+  findCouponInfoByOrderProduct(mobile, shopCode, productInfoDtos, receiverAddressId) {
     return {
       url: '/ticketCoupon/findCouponInfoByOrderProduct.do',
       type: 'POST',
       param: {
         mobile,
         shopCode,
-        productInfoDtos
+        productInfoDtos,
+        receiverAddressId
       }
     }
   },
@@ -1052,7 +1093,7 @@ var FurtureStoreUrl = {
   /**
    * 查看资料的客户认可和客户不认可接口
    */
-  customerApproval(materialId, status){
+  customerApproval(materialId, status) {
     return {
       url: '/bnq_worker/custom-made/customerApproval.do',
       type: 'GET',
@@ -1061,7 +1102,121 @@ var FurtureStoreUrl = {
         status: status
       }
     }
-  }
-  
+  },
+  /**
+   * 获取1201活动券的活动
+   */
+  getActive(phone, token, channel) {
+    return {
+      url: '/wx-service/public/test/app/1201',
+      type: 'POST',
+      param: {
+        phone: phone,
+        token: token,
+        channel: channel
+      }
+    }
+  },
+  /**
+   * 获取1201活动券的活动
+   */
+  sendWx(wxUrl, clickId, user_action_set_id, action_time, value) {
+    return {
+      url: '/wx-service/public/test/app/1201/sendWx',
+      type: 'POST',
+      param: {
+        wxUrl,
+        clickId,
+        user_action_set_id,
+        action_time,
+        value
+      }
+    }
+  },
+  /**
+   * 获取运费图片
+   */
+  getCarriageImg(shopCode) {
+    return {
+      url: '/item/getCarriageImg',
+      type: 'get',
+      param: {
+        shopCode: shopCode
+      }
+    }
+  },
+  /**
+   * 获取证件类型
+   */
+  getPapersTypes() {
+    return {
+      url:'/energySubsidy/meta',
+      type: 'get',
+    }
+  },
+  /**
+   * 获取用户节能补贴资料
+   * @param customerPhone 用户手机号
+   */
+  getPapersInfo(customerPhone) {
+    return {
+      url:'/energySubsidy/info',
+      type: 'get',
+      param: {
+        customerPhone: customerPhone
+      }
+    }
+  },
+  /**
+   * 保存更新用户节能补贴资料
+   * @param customerPhone 用户手机号
+   * @param certificateType 证件类型
+   * @param certificateNo 证件号码
+   * @param customerName 姓名
+   * @param idCardNo 身份证号码
+   * @param payAccount 支付账号
+   * @param householdType 户口类型
+   * @param idCardBackendImg 身份证反面照
+   * @param idCardFrontImg 身份证正面照
+   * @param certificateBackendImg 证件反面照
+   * @param certificateFrontImg 证件正面照
+   * @param img1 客户基础信息页
+   * @param img2 续签第一页
+   * @param img3 续签第二页
+   */
+  getPapersUpdate(param) {
+    return {
+      url:'/energySubsidy/update',
+      type: 'post',
+      param: param
+    }
+  },
+  /* 
+   * 预买单-推送促销员预购单到购物车
+   */
+  pushCustomCart(phone,preOrderId,shopCode) {
+    return {
+      url:'/bnq_worker/advance/pay/pushCustomCart.do',
+      type: 'get',
+      param: {
+        phone,
+        preOrderId,
+        shopCode
+      }
+    }
+  },
+  /* 
+   * 根据shopCode获取shopInfo
+   * @param shopCode
+   */
+  queryByShopCode(shopCode) {
+    return {
+      url:'/shop/queryByShopCode',
+      type: 'get',
+      param: {
+        shopCode: shopCode
+      }
+    }
+  },
 };
 module.exports = FurtureStoreUrl;

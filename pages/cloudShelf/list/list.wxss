@@ -1,0 +1,411 @@
+/* pages/cloudShelf/list/list.wxss */
+
+page {
+  height: 100%;
+  background-color: #f7f7f7;
+}
+
+.category {
+  width: 100%;
+}
+
+.topView {
+  width: 100%;
+  height: 190rpx;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+
+.topViewPlaceholder {
+  width: 100%;
+  height: 190rpx;
+}
+
+/* 搜索 */
+
+.topSearch {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding: 20rpx 0;
+  border-bottom: 2rpx #d8d8d8 solid;
+  background-color: #fff;
+}
+
+.topSearchLeft {
+  width: 560rpx;
+  height: 60rpx;
+  position: relative;
+  background-color: #f1f1f1;
+  border-radius: 30rpx;
+  margin-left: 30rpx;
+}
+
+.topSearchIcon {
+  width: 42rpx;
+  height: 42rpx;
+  position: absolute;
+  left: 16rpx;
+  top: 16rpx;
+  z-index: 1;
+}
+
+.topSearchCont {
+  width: 560rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  padding: 0 70rpx;
+  font-size: 28rpx;
+  display: flex;
+  box-sizing: border-box;
+}
+
+.topSearchFail {
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 9;
+}
+
+.topSearchRight {
+  width: 180rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.topSearchSm {
+  width: 44rpx;
+  height: 43rpx;
+  display: none;
+}
+
+.topSearchBtn {
+  width: 110rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  background-color: #fa7b00;
+  font-size: 28rpx;
+  color: #fff;
+  text-align: center;
+  padding: 0;
+}
+
+.topSearchClose {
+  font-size: 28rpx;
+  color: #999;
+}
+
+/* 列表**/
+
+.list {
+  width: 100%;
+  /* position: fixed;
+    top:100rpx;
+    left: 0; */
+}
+
+.listScreenPlaceholder {
+  height: 90rpx;
+}
+
+.listScreen {
+  width: 100%;
+  height: 89rpx;
+  display: flex;
+  justify-content: space-around;
+  background-color: #fff;
+  align-items: center;
+  font-size: 28rpx;
+  border-bottom: 1px #d8d8d8 solid;
+  position: fixed;
+  top: 102rpx;
+  left: 0;
+  z-index: 999;
+}
+
+.listScreenMark {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.listScreenIcon {
+  margin-left: 10rpx;
+}
+
+.listScreenIcon image {
+  width: 18rpx;
+  height: 13rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.iconPrice {
+  margin-left: 10rpx;
+}
+
+.iconPrice image {
+  width: 16rpx;
+  height: 27rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.listScreenMark.active {
+  color: #fa7b00;
+}
+
+.listScreenCover {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 190rpx;
+  left: 0;
+  z-index: 9;
+}
+
+.listScreenCont {
+  width: 100%;
+  background-color: #fff;
+  font-size: 32rpx;
+}
+
+.listScreenContList {
+  height: 80rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6rpx 30rpx;
+  color: #999;
+  font-size: 32rpx;
+}
+
+.listScreenContList.active {
+  color: #fa7b00;
+}
+
+.listScreenContList.active .listScreenActive image {
+  display: block;
+}
+
+.listScreenActive image {
+  width: 30rpx;
+  height: 22rpx;
+  display: none;
+}
+
+.listMain {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  background-color: #f7f7f7;
+}
+
+.listGood {
+  width: 330rpx;
+  /* height: 528rpx; */
+  margin-bottom: 10rpx;
+  padding: 20rpx 20rpx 10rpx;
+  background-color: #fff;
+  font-size: 28rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.listGood navigator {
+  width: 330rpx;
+}
+
+.listGood image {
+  width: 330rpx;
+  height: 330rpx;
+}
+
+.listGoodTit {
+  color: #000;
+  width: 330rpx;
+  height: 45rpx;
+  line-height: 45rpx;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+}
+
+.listTagRow {
+  height: 32rpx;
+  margin: 12rpx 0 20rpx 0;
+}
+
+.listGoodTit text {
+  word-break: break-all;
+}
+
+.listGoodDesc {
+  color: #999;
+  font-size: 28rpx;
+  height: 76rpx;
+  overflow: hidden;
+}
+
+.listMemberGoodPrice {
+  color: #333333;
+  font-size: 24rpx;
+  margin-top: 6rpx;
+}
+
+.listGoodBottom {
+  display: flex;
+  /* justify-content: center; */
+  flex-direction: row;
+  width: 100%;
+  height: 40rpx;
+  overflow: hidden;
+  align-items: flex-start;
+  color: #fa7b00;
+}
+
+.listGoodPrice {
+  display: flex;
+  align-items: center;
+}
+
+.listGoodMemberPrice {
+  color: #FF0000;
+  font-size: 28rpx;
+}
+
+.listGoodMemberTag {
+  display: inline-block;
+  margin-left: 8rpx;
+  padding: 3rpx 4rpx;
+  background: #FF0000;
+  border-radius: 4rpx;
+  color: #fff;
+  font-size: 18rpx;
+  line-height: 1;
+}
+
+.listGoodOriginalPrice {
+  flex-grow: 1;
+  font-size: 22rpx;
+  color: #999999;
+  line-height: 1;
+  text-align: right;
+}
+
+.listGoodOriginalPriceOnly {
+  flex-grow: 1;
+  font-size: 28rpx;
+  color: #FF0000;
+  line-height: 1;
+  text-align: right;
+}
+
+.listGoodMark {
+  border: 1rpx #fa7b00 solid;
+  margin-right: 10rpx;
+  border-radius: 8rpx;
+  padding: 0 5rpx;
+  color: #fa7b00;
+  font-size: 24rpx;
+}
+
+.listGoodMark:last-child {
+  margin-right: 0;
+}
+
+.noMore {
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  background-color: #00000000;
+  text-align: center;
+  color: #666;
+  font-size: 32rpx;
+}
+
+.brand-bg-view {
+  width: 710rpx;
+  height: 120rpx;
+  position: relative;
+  margin-top: 20rpx;
+  margin-left: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.brand-icon-view {
+  width: 240rpx;
+  height: 120rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.brand-icon-image {
+  width: 61rpx;
+  height: 61rpx;
+  background-color: #ff9000;
+}
+
+.brand-name {
+  font-size: 24rpx;
+  color: #666;
+  margin-top: 7rpx;
+}
+
+.brand-content {
+  /* width:350rpx; */
+  height: 68rpx;
+  font-size: 24rpx;
+  color: #444;
+  margin-top: 26rpx;
+  margin-left: 26rpx;
+  flex: 1;
+}
+
+.brand-item-view {
+  display: flex;
+  flex-direction: row;
+}
+
+.brand-right {
+  align-self: stretch;
+  width: 34rpx;
+  background-color: rgb(255, 250, 242);
+}
+
+.brand_backgroud {
+  width: 710rpx;
+  height: 120rpx;
+  position: absolute;
+  z-index: -1;
+}
+
+.customerservice {
+  position: fixed;
+  right: 1rpx;
+  bottom: 10rpx;
+  background: none !important;
+  color: #000 !important;
+}
+
+.im_btn {
+  width: 108rpx;
+  height: 108rpx;
+}

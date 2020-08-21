@@ -1,0 +1,140 @@
+/* component/top-filter/top-filter.wxss */
+
+.topFilter {
+  height: 90rpx;
+  position: relative;
+}
+
+.topFilterBorderBottom {
+  border-bottom: 2rpx solid #d8d8d8;
+}
+
+.topFilterHeader {
+  display: flex;
+  height: 100%;
+  background-color: #fff;
+}
+
+.topFilterColumn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+}
+
+.topFilterColumnTitle {
+  color: #333333;
+  font-size: 28rpx;
+  line-height: 1;
+}
+
+.topFilterIconArrow {
+  width: 20rpx;
+  height: 14rpx;
+  margin-left: 10rpx;
+}
+
+.topFilterIconArrowReverse {
+  transform: rotate(180deg);
+}
+
+.ActiveColumn>.topFilterColumnTitle {
+  color: #FA7B00;
+}
+
+.topFilterContainer {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.topFilterMask {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 0.6;
+  background: #000000;
+  overflow: hidden;
+}
+
+.topFilterWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+}
+
+.topFilterBrandContent {
+  padding: 20rpx 30rpx 30rpx;
+  overflow: hidden;
+}
+
+.topFilterBrandItem {
+  float: left;
+  width: 50%;
+  padding: 20rpx 0;
+}
+
+.topFilterBrandName {
+  margin-right: 12rpx;
+  color: #333333;
+  font-size: 28rpx;
+  line-height: 1;
+}
+
+.topFilterSortContent {
+  padding: 0 30rpx;
+}
+
+.topFilterSortItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 26rpx 0;
+}
+
+.topFilterSortName {
+  color: #999999;
+  font-size: 32rpx;
+  line-height: 1;
+}
+
+.topFilterActiveName {
+  color: #FA7B00;
+}
+
+.topFilterIconSelected {
+  width: 26rpx;
+  height: 18rpx;
+}
+
+.topFilterBrandFooter {
+  display: flex;
+  height: 90rpx;
+  box-shadow: 0 -10rpx 10rpx #F1F1F1;
+}
+
+.topFilterBrandBtn {
+  width: 50%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  color: #333333;
+  font-size: 32rpx;
+  text-align: center;
+  line-height: 90rpx;
+}
+
+.topFilterBrandConfirmBtn {
+  color: #fff;
+  background-image: linear-gradient(270deg, #FFA650 0%, #FA7B00 71%);
+}

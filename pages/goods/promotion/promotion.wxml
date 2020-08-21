@@ -1,0 +1,80 @@
+<view class="topView">
+  <view class="topSearch">
+    <icon class="topSearchIcon" size='16' type='search'></icon>
+    <input class="topSearchCont" value="{{keyword}}" confirm-type="search" type="text" placeholder="搜索该活动促销商品"
+      bindinput="wxSearchInput" bindconfirm="wxSearchConfirm" focus="true" />
+    <view class="topSearchFail" wx:if="{{keyword.length > 0}}" bindtap="wxSearchCancel">
+      <icon size='16' type='clear'></icon>
+    </view>
+  </view>
+  <view class="topSearchRight">
+    <button data-key='search' bindtap="wxSearchConfirm" class="topSearchBtn">搜索</button>
+  </view>
+</view>
+
+<!-- 筛选 -->
+<top-filter class="topFilter" brandList="{{brandList}}" bindbrands="handleSelectedBrand" bindsort="handleSelectedSort" />
+
+<view class="promotionTip">
+  <text wx:if="{{promotionData.isCoupon}}" class="promotionTipText">优惠券：</text>
+  <text wx:elif="{{promotionData.isActivity}}" class="promotionTipText">活动预告：</text>
+  <text wx:else class="promotionTipText">满减：</text>
+  <text class="promotionTipText">{{promotionData.adviertisement || ''}}</text>
+  <text wx:if="{{promotionData.isActivity}}" class="promotionTipText">。 距活动开始</text>
+  <view wx:if="{{promotionData.isActivity}}" class="promotionCountDownWrap">
+    <view class="promotionCountDown">
+      <text wx:for="{{countDown.hour}}" wx:key="index" class="promotionCountDownNumber">{{item}}</text>
+      <text class="promotionCountDownColon">:</text>
+      <text wx:for="{{countDown.minute}}" wx:key="index" class="promotionCountDownNumber">{{item}}</text>
+      <text class="promotionCountDownColon">:</text>
+      <text wx:for="{{countDown.second}}" wx:key="index" class="promotionCountDownNumber">{{item}}</text>
+    </view>
+  </view>
+</view>
+
+<scroll-view 
+  wx:if="{{goodsList.length > 0}}"
+  scroll-y 
+  class="listMain" 
+  lower-threshold="100" 
+  bindscrolltolower="handleScrollToLower"
+>
+  <view class="listGood" wx:for="{{goodsList}}" wx:key="index">
+    <navigator url="../../goods/detail/detail?itemId={{item.id}}" hover-class="none">
+      <view class="listGoodImg">
+        <image src="{{item.listImg}}" class="listGoodImg"></image>
+      </view>
+      <view class='rightItem'>
+        <view>
+          <view class="listGoodTit"><text>{{item.itemName}}</text></view>
+          <block>
+            <text wx:for="{{item.tags}}" wx:for-item='value' wx:key="index" class="listGoodMark">{{value}}</text>
+          </block>
+        </view>
+        <view class="listGoodBottom">
+          <text class="listGoodPrice" wx:if="{{!!item.salePriceStr}}">{{item.salePriceStr}}</text>
+          <!-- <image src='../images/icon-list-cartbtn.png' class='cartImg'></image>  -->
+        </view>
+      </view>
+    </navigator>
+  </view>
+  <view wx:if="{{!toShow}}" class="noMore">
+    <text>加载更多</text>
+  </view>
+  <view wx:if="{{toShow}}" class="noMore">
+    <text>-- 没有更多了 --</text>
+  </view>
+  <view wx:if="{{isLoaded&&goodsList.length==0}}" class="noMore">
+    <text>-- 没有搜索到数据 --</text>
+  </view>
+</scroll-view>
+
+<view class='bottomView'>
+  <view class='bottomLeftView'>
+    <!-- <text class='bottomLeftText'>小计：<text class='bottomLeftText1'>¥800.00</text></text>
+      <text class='bottomLeftText2'>可优惠￥160 可返券￥50</text> -->
+  </view>
+  <view class='bottomRightView' bindtap="goToCart">
+    <text class='bottomBtnText'>结算</text>
+  </view>
+</view>

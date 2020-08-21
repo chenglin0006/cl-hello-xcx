@@ -1,0 +1,38 @@
+<!--component/share/share.wxml-->
+<view class='component_container'>
+<view style="flex:1;"  bindtap="closeShareView"></view>
+<view class='bottom' wx:if="{{showSharePXQ}}">
+    <view class='header'>
+      <text>分享到朋友圈</text>
+      <view  bindtap="closeShareView">
+        <image src='../../images/icon-pop-close.png'></image>
+      </view>
+    </view>
+    <!-- <view wx:for="{{sharePYQImageParams}}" wx:key="index" style="text-align: left;">{{item.key}}：{{item.value}}</view> -->
+    <view class='share_pyq_container'>
+      <image src='{{shareImage}}' mode="widthFix"></image>
+      <button bindtap="savePic" wx:if="{{canSavePic}}">保存图片</button>
+      <button open-type="openSetting" bindopensetting="getAuthcallback" wx:if="{{!canSavePic}}">去获取保存图片权限</button>
+      <text>保存图片到手机后，您可到朋友圈分享该商品</text>
+    </view>
+  </view>
+  <view class='bottom'  wx:if="{{!showSharePXQ}}">
+    <view class='header'>
+      <text>分享</text>
+      <view  bindtap="closeShareView">
+        <image src='../../images/icon-pop-close.png'></image>
+      </view>
+    </view>
+    <view class='share_container'>
+      <button style='background-color:white;' class='share_btn icon-view'  open-type='share' type='default' hover-class="other-button-hover">
+        <image src='../../images/icon-share-wx.png'></image>
+        <text>分享给好友</text>
+      </button>
+      <view class="line"></view>
+      <view class='icon-view'  bindtap="showSharePYQView">
+        <image src='../../images/icon-share-pyq.png'></image>
+        <text>分享到朋友圈</text>
+      </view>
+    </view>
+  </view>
+</view>

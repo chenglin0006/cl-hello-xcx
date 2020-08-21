@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "top-filter": "/components/top-filter/top-filter"
+  },
+  "navigationBarTitleText": "促销详情"
+}

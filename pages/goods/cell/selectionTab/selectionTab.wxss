@@ -1,0 +1,125 @@
+.tabPage{
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  width: 100%;
+  top: 100rpx;
+}
+.tabTitle{
+  position: absolute;
+  left: 0;
+  top:0;
+  display: flex;
+  width: 100%;
+  align-items: center;  
+  border-top: 2rpx solid #E4E4E4;
+  border-bottom: 2rpx solid #E4E4E4;
+  background-color: #fff;
+}
+.tabTitle>view{
+  width: 33.33%;
+  text-align: center;
+  flex: 1;
+  font-size: 28rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  display: flex; 
+  align-items: center; 
+  justify-content:center;
+}
+.title text{
+  color: #333;
+}
+.arrow-down{
+  width: 0;
+  height: 0;
+  border-left: 12rpx solid transparent;
+  border-right: 12rpx solid transparent;
+  border-top: 12rpx solid #ccc;
+  /* border-bottom: 6px solid #ccc; 向上箭头*/
+  margin-left: 10rpx;
+}
+.arrow-up{
+  width: 0;
+  height: 0;
+  border-left: 12rpx solid transparent;
+  border-right: 12rpx solid transparent;
+  border-bottom: 6px solid #ff9000; 
+  margin-left: 10rpx;
+}
+
+.title-tab{
+  position: absolute;
+  background: #fff;
+  width: 100%;
+  top: 84rpx;
+  left: 0;
+  z-index: 999;
+  display: flex;
+  flex-wrap: wrap;
+}
+.tagButton{
+  width: 30%;
+  margin: 15rpx 0 15rpx 18rpx;
+  font-size: 30rpx;
+  background-color: #E4E4E4;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  border-radius: 10rpx;
+  height: 60rpx;
+}
+.rowButton{
+  width: 100%;
+  margin: 0 30rpx 0 30rpx ;
+  font-size: 30rpx;
+  height: 90rpx;
+  border-bottom: 1px solid #E4E4E4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between
+}
+.rowButton image{
+  width: 26rpx;
+  height: 18rpx;
+}
+.categoryButton{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.categoryLeft{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  font-size: 32rpx;
+  background-color: #f5f5f5;
+}
+.categoryLeft view{
+  padding: 30rpx 0;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+.categoryRight{
+  flex: 2;
+  display: flex;
+  font-size: 32rpx;
+  flex-direction: column;
+  justify-content: center;
+}
+.categoryRight view{
+  padding: 20rpx 0 20rpx 50rpx;
+  display: flex;
+  align-content: center;
+}
+.bgView{
+  position: absolute;
+  top:0;
+  left: 0;
+  right: 0;
+  bottom:0;
+  background-color: #000000;
+  opacity:0.5;
+  z-index: 998;
+}
