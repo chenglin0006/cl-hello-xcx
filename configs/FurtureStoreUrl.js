@@ -73,6 +73,19 @@ var FurtureStoreUrl = {
       param: {}
     }
   },
+  /**
+   * 家博会爆品列表
+   * @param terminalType 10 小程序，
+   */
+  jbhSkuCollection(shopCode, sapSkuCodes) {
+    return {
+      url: '/items/list',
+      type: 'get',
+      param: {
+        shopCode, sapSkuCodes,curPage:1,pageSize:sapSkuCodes.split(',').length
+      }
+    }
+  },
   /***
    * 获取商品列表
    * @param queryCategoryId 选择的前台类目

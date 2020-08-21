@@ -135,6 +135,7 @@ Page({
   },
 
   initData: function(cityName){
+      debugger;
     app.globalData.cityName = cityName;
     let skuListStr = this.initJsonData(cityName);
     let shopCode = '';

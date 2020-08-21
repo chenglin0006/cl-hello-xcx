@@ -50,11 +50,11 @@
     </view>
   </view>
   <view class="tag-div">
-    <a  wx:key="{{item.id}}" wx:for="{{tagList}}" class="{{'tag-item '+'item-'+index}}">{{item.name}}</a>
+    <a  wx:key="id" wx:for="{{tagList}}" class="{{'tag-item '+'item-'+index}}">{{item.name}}</a>
   </view>
   <view class="main-content">
     <view
-        wx:key="{{item.id}}"
+        wx:key="id"
         wx:for="{{tagList}}"
         class="tag-pic-item"
     >
@@ -65,8 +65,8 @@
           <view class="type-name">品牌展馆</view>
       </view>
       <view class="list-content">
-        <view class="brand-line" wx:for="{{brandList}}">
-          <view class="brand-item" wx:key="{{item.brand}}" wx:for="{{item}}" wx:for-item="ele">
+        <view class="brand-line" wx:key="brand" wx:for="{{brandList}}">
+          <view class="brand-item" wx:key="brand" wx:for="{{item}}" wx:for-item="ele">
               <view class="no-div">{{ele.noStr}}</view>
               <view class="image-div">
                   <image wx:if="{{ele.logo}}" src="{{ele.logo}}" />
@@ -81,7 +81,7 @@
             <view class="type-name">爆品秒杀</view>
         </view>
         <view class="hot-list">
-            <view wx:for="{{hotSkuList}}" data-brand="{{detailData.sapSkuNoFlag}}" bindtap="bindViewTap" wx:for-item="detailData"  class="hot-item">
+            <view wx:key="itemName" wx:for="{{hotSkuList}}" data-brand="{{detailData.sapSkuNoFlag}}" bindtap="bindViewTap" wx:for-item="detailData"  class="hot-item">
                 <view class="image-div">
                     <image wx:if="{{detailData.listImg}}" src="{{detailData.listImg}}" />
                 </view>
