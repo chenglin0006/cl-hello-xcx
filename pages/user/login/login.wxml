@@ -1,0 +1,46 @@
+<!--pages/user/login/login.wxml-->
+<view class="logincontainer" wx:if='{{!firstIn}}'>
+  <image class='logo' src="../../../images/logo.png" mode="aspectFit"></image>
+  <input class='input-account' focus='{{phoneFocus}}' bindinput='phoneInput' type='number' placeholder='请输入手机号' maxlength='11'></input>
+  
+  <view wx:if='{{usePictureCode}}' class='view-code'>
+      <!-- <input style='flex:1' focus='{{imageCodeFocus}}' class='input-account'  bindinput='picCodeInput' placeholder='请输入图形验证码'/> -->
+      <text>{{question}}</text>
+      <text wx:if="{{!!displayedChoice}}">{{displayedChoice}}</text>
+      <view class='code-img'>
+        <view>
+          <image style='width:240px;height:120px' src='{{picCodeUrl}}' mode="aspectFit" catchtap="clickPoint"></image>
+          
+          <view wx:for="{{locations}}" style="position: absolute;left:{{item.left}}px;top:{{item.top}}px;width:10px;height:10px;border-radius: 5px;background-color: #ff9000;"></view>
+          
+        </view>
+        <text bindtap="getValidateCode">刷新</text>
+      </view>
+      <!-- <button style='width:95px;height:35px;padding:0' bindtap='regetPicCode'>
+        <image style='width:95px;height:35px' src='{{picCodeUrl}}' mode="aspectFit"></image>
+      </button> -->
+  </view>
+  <view  class='view-sms-code'>
+    <input class='input-code' focus='{{smsFocus}}' type='number' placeholder='请输入验证码'  bindinput='codeInput'/>
+    <button class='code-button' bindtap='getCode' disabled="{{codeBtnDisable}}">{{codeBtnTxt}}</button>
+  </view>
+  
+
+  <button class='login-button' bindtap='login' disabled="{{loginBtnDisable}}">登录</button>
+  <text class='bottom-text'>未注册用户，系统自动为您注册</text>
+  <view style='flex:1'></view>
+  <view class='bottom-view'>
+  <text class='bottom-term-text'>点击确定，即表示已阅读并同意</text>
+  <button class='bottom-term-btn' bindtap='gototerm'>百安居会员协议</button>
+  </view>
+</view>
+<view wx:else class='justPhoneLogin'>
+  <view style='flex:1'></view>
+  <button class='login-button' open-type="getPhoneNumber" bindgetphonenumber="getWXPhoneNumber">手机号登录</button>
+  <text class='bottom-text'>未注册用户，系统自动为您注册</text>
+  <view style='flex:1'></view>
+  <view class='bottom-view'>
+  <text class='bottom-term-text'>点击登录，即表示已阅读并同意</text>
+  <button class='bottom-term-btn' bindtap='gototerm'>百安居会员协议</button>
+  </view>
+</view>
